@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="<a class="vglnk" href="http://www.springframework.org/schema/beans" rel="nofollow"><span>http</span><span>://</span><span>www</span><span>.</span><span>springframework</span><span>.</span><span>org</span><span>/</span><span>schema</span><span>/</span><span>beans</span></a>"
+    xmlns:xsi="<a class="vglnk" href="http://www.w3.org/2001/XMLSchema-instance" rel="nofollow"><span>http</span><span>://</span><span>www</span><span>.</span><span>w3</span><span>.</span><span>org</span><span>/</span><span>2001</span><span>/</span><span>XMLSchema</span><span>-</span><span>instance</span></a>" xmlns:context="<a class="vglnk" href="http://www.springframework.org/schema/context" rel="nofollow"><span>http</span><span>://</span><span>www</span><span>.</span><span>springframework</span><span>.</span><span>org</span><span>/</span><span>schema</span><span>/</span><span>context</span></a>"
+    xmlns:tx="<a class="vglnk" href="http://www.springframework.org/schema/tx" rel="nofollow"><span>http</span><span>://</span><span>www</span><span>.</span><span>springframework</span><span>.</span><span>org</span><span>/</span><span>schema</span><span>/</span><span>tx</span></a>"
+    xsi:schemaLocation="<a class="vglnk" href="http://www.springframework.org/schema/beans" rel="nofollow"><span>http</span><span>://</span><span>www</span><span>.</span><span>springframework</span><span>.</span><span>org</span><span>/</span><span>schema</span><span>/</span><span>beans</span></a> <a class="vglnk" href="http://www.springframework.org/schema/beans/spring-beans.xsd" rel="nofollow"><span>http</span><span>://</span><span>www</span><span>.</span><span>springframework</span><span>.</span><span>org</span><span>/</span><span>schema</span><span>/</span><span>beans</span><span>/</span><span>spring</span><span>-</span><span>beans</span><span>.</span><span>xsd</span></a>
+    <a class="vglnk" href="http://www.springframework.org/schema/context" rel="nofollow"><span>http</span><span>://</span><span>www</span><span>.</span><span>springframework</span><span>.</span><span>org</span><span>/</span><span>schema</span><span>/</span><span>context</span></a> <a class="vglnk" href="http://www.springframework.org/schema/context/spring-context-4.0.xsd" rel="nofollow"><span>http</span><span>://</span><span>www</span><span>.</span><span>springframework</span><span>.</span><span>org</span><span>/</span><span>schema</span><span>/</span><span>context</span><span>/</span><span>spring</span><span>-</span><span>context</span><span>-</span><span>4</span><span>.</span><span>0</span><span>.</span><span>xsd</span></a>
+    <a class="vglnk" href="http://www.springframework.org/schema/tx" rel="nofollow"><span>http</span><span>://</span><span>www</span><span>.</span><span>springframework</span><span>.</span><span>org</span><span>/</span><span>schema</span><span>/</span><span>tx</span></a> <a class="vglnk" href="http://www.springframework.org/schema/tx/spring-tx-4.0.xsd" rel="nofollow"><span>http</span><span>://</span><span>www</span><span>.</span><span>springframework</span><span>.</span><span>org</span><span>/</span><span>schema</span><span>/</span><span>tx</span><span>/</span><span>spring</span><span>-</span><span>tx</span><span>-</span><span>4</span><span>.</span><span>0</span><span>.</span><span>xsd</span></a>">
+ 
+    <!-- to activate annotations in beans already registered in the ApplicationContext -->
+    <context:annotation-config />
+ 
+    <!-- scans packages to find and register beans within the application context -->
+    <context:component-scan base-package="com.jaxws.series.td.spring.hibernate" />
+ 
+    <!-- turn on spring transaction annotation -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+ 
+    <!-- Transaction Manager -->
+    <bean id="transactionManager"
+        class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+ 
+    <!-- Session Factory -->
+    <bean id="sessionFactory"
+        class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="annotatedClasses">
+            <list>
+                <value>com.jaxws.series.td.spring.hibernate.model.Music</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+ 
+    <!-- dataSource configuration -->
+    <bean id="dataSource"
+        class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/benchresources" />
+        <property name="username" value="root" />
+        <property name="password" value="" />
+    </bean>
+ 
+</beans>
