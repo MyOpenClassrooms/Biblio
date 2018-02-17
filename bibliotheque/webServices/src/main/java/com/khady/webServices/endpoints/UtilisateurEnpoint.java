@@ -25,10 +25,16 @@ import com.khady.webServices.service.UtilisateurService;
 @Endpoint
 public class UtilisateurEnpoint {
 
-	private static final String NAMESPACE_URI = "http://khady.com/soap";
+	private static final String NAMESPACE_URI = "http://www.khady.com/soap";
 
 	@Autowired
 	private UtilisateurService utilisateurService;
+	
+	@Autowired
+	public UtilisateurEnpoint() {
+		    System.out.println("WebServiceEndPoint");
+		
+	}
 
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "trouverUtilisateurParIdRequest")
 	@ResponsePayload

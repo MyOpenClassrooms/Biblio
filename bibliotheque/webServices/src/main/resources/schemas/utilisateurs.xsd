@@ -1,5 +1,5 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:tns="http://khady.com/soap" targetNamespace="http://khady.com/soap"
+	xmlns:tns="http://www.khady.com/soap" targetNamespace="http://www.khady.com/soap"
 	elementFormDefault="qualified">
 
 	<xs:complexType name="utilisateurInfo">
