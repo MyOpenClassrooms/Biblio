@@ -75,7 +75,7 @@ public class UtilisateurDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Utilisateur> listerUtilisateurRelance() throws DaoException {
+	public List<String> listerUtilisateurRelance() throws DaoException {
 		Query req = entityManager.createNativeQuery( JPQL_SELECT_PAR_DATE_RETOUR );
 		try {
 			return req.getResultList();

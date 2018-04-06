@@ -58,13 +58,8 @@ public class UtilisateurService {
 	}
 
 	@WebMethod
-	public List<Utilisateur> listerUtilisateurRelance() throws BibliothequeException{
-		BibliothequeFault fault = new BibliothequeFault();
-		List<Utilisateur> utilisateurs =  dao.listerUtilisateurRelance();
-		if (utilisateurs != null) {
-			return utilisateurs;
-		} else
-			throw new BibliothequeException("Aucun utilisateur trouvé pour la relance " , fault);
+	public List<String> listerUtilisateurRelance() {
+			return  dao.listerUtilisateurRelance();
+		
 	}
-
 }

@@ -28,23 +28,57 @@ public interface UtilisateurService {
 
     /**
      * 
-     * @param idUser
+     * @param motDePasse
+     * @param prénom
+     * @param adresse
+     * @param photo
+     * @param login
+     * @param nom
+     * @param email
+     */
+    @WebMethod
+    @RequestWrapper(localName = "creerUtilisateur", targetNamespace = "http://webService.wsBiblio.khady.fr/", className = "fr.khady.wsBiblioClient.CreerUtilisateur")
+    @ResponseWrapper(localName = "creerUtilisateurResponse", targetNamespace = "http://webService.wsBiblio.khady.fr/", className = "fr.khady.wsBiblioClient.CreerUtilisateurResponse")
+    @Action(input = "http://webService.wsBiblio.khady.fr/UtilisateurService/creerUtilisateurRequest", output = "http://webService.wsBiblio.khady.fr/UtilisateurService/creerUtilisateurResponse")
+    public void creerUtilisateur(
+        @WebParam(name = "nom", targetNamespace = "")
+        String nom,
+        @WebParam(name = "pr\u00e9nom", targetNamespace = "")
+        String prénom,
+        @WebParam(name = "adresse", targetNamespace = "")
+        String adresse,
+        @WebParam(name = "email", targetNamespace = "")
+        String email,
+        @WebParam(name = "login", targetNamespace = "")
+        String login,
+        @WebParam(name = "motDePasse", targetNamespace = "")
+        String motDePasse,
+        @WebParam(name = "photo", targetNamespace = "")
+        String photo);
+
+    /**
+     * 
      * @return
-     *     returns fr.khady.wsBiblioClient.Utilisateur
-     * @throws BibliothequeException
+     *     returns java.util.List<fr.khady.wsBiblioClient.Utilisateur>
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "trouverUtilisateurParId", targetNamespace = "http://webService.wsBiblio.khady.fr/", className = "fr.khady.wsBiblioClient.TrouverUtilisateurParId")
-    @ResponseWrapper(localName = "trouverUtilisateurParIdResponse", targetNamespace = "http://webService.wsBiblio.khady.fr/", className = "fr.khady.wsBiblioClient.TrouverUtilisateurParIdResponse")
-    @Action(input = "http://webService.wsBiblio.khady.fr/UtilisateurService/trouverUtilisateurParIdRequest", output = "http://webService.wsBiblio.khady.fr/UtilisateurService/trouverUtilisateurParIdResponse", fault = {
-        @FaultAction(className = BibliothequeException.class, value = "http://webService.wsBiblio.khady.fr/UtilisateurService/trouverUtilisateurParId/Fault/BibliothequeException")
-    })
-    public Utilisateur trouverUtilisateurParId(
-        @WebParam(name = "id_user", targetNamespace = "")
-        long idUser)
-        throws BibliothequeException
-    ;
+    @RequestWrapper(localName = "listerUtilisateur", targetNamespace = "http://webService.wsBiblio.khady.fr/", className = "fr.khady.wsBiblioClient.ListerUtilisateur")
+    @ResponseWrapper(localName = "listerUtilisateurResponse", targetNamespace = "http://webService.wsBiblio.khady.fr/", className = "fr.khady.wsBiblioClient.ListerUtilisateurResponse")
+    @Action(input = "http://webService.wsBiblio.khady.fr/UtilisateurService/listerUtilisateurRequest", output = "http://webService.wsBiblio.khady.fr/UtilisateurService/listerUtilisateurResponse")
+    public List<Utilisateur> listerUtilisateur();
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<java.lang.String>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listerUtilisateurRelance", targetNamespace = "http://webService.wsBiblio.khady.fr/", className = "fr.khady.wsBiblioClient.ListerUtilisateurRelance")
+    @ResponseWrapper(localName = "listerUtilisateurRelanceResponse", targetNamespace = "http://webService.wsBiblio.khady.fr/", className = "fr.khady.wsBiblioClient.ListerUtilisateurRelanceResponse")
+    @Action(input = "http://webService.wsBiblio.khady.fr/UtilisateurService/listerUtilisateurRelanceRequest", output = "http://webService.wsBiblio.khady.fr/UtilisateurService/listerUtilisateurRelanceResponse")
+    public List<String> listerUtilisateurRelance();
 
     /**
      * 
@@ -78,61 +112,22 @@ public interface UtilisateurService {
 
     /**
      * 
+     * @param idUser
      * @return
-     *     returns java.util.List<fr.khady.wsBiblioClient.Utilisateur>
+     *     returns fr.khady.wsBiblioClient.Utilisateur
      * @throws BibliothequeException
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "listerUtilisateurRelance", targetNamespace = "http://webService.wsBiblio.khady.fr/", className = "fr.khady.wsBiblioClient.ListerUtilisateurRelance")
-    @ResponseWrapper(localName = "listerUtilisateurRelanceResponse", targetNamespace = "http://webService.wsBiblio.khady.fr/", className = "fr.khady.wsBiblioClient.ListerUtilisateurRelanceResponse")
-    @Action(input = "http://webService.wsBiblio.khady.fr/UtilisateurService/listerUtilisateurRelanceRequest", output = "http://webService.wsBiblio.khady.fr/UtilisateurService/listerUtilisateurRelanceResponse", fault = {
-        @FaultAction(className = BibliothequeException.class, value = "http://webService.wsBiblio.khady.fr/UtilisateurService/listerUtilisateurRelance/Fault/BibliothequeException")
+    @RequestWrapper(localName = "trouverUtilisateurParId", targetNamespace = "http://webService.wsBiblio.khady.fr/", className = "fr.khady.wsBiblioClient.TrouverUtilisateurParId")
+    @ResponseWrapper(localName = "trouverUtilisateurParIdResponse", targetNamespace = "http://webService.wsBiblio.khady.fr/", className = "fr.khady.wsBiblioClient.TrouverUtilisateurParIdResponse")
+    @Action(input = "http://webService.wsBiblio.khady.fr/UtilisateurService/trouverUtilisateurParIdRequest", output = "http://webService.wsBiblio.khady.fr/UtilisateurService/trouverUtilisateurParIdResponse", fault = {
+        @FaultAction(className = BibliothequeException.class, value = "http://webService.wsBiblio.khady.fr/UtilisateurService/trouverUtilisateurParId/Fault/BibliothequeException")
     })
-    public List<Utilisateur> listerUtilisateurRelance()
+    public Utilisateur trouverUtilisateurParId(
+        @WebParam(name = "id_user", targetNamespace = "")
+        long idUser)
         throws BibliothequeException
     ;
-
-    /**
-     * 
-     * @return
-     *     returns java.util.List<fr.khady.wsBiblioClient.Utilisateur>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "listerUtilisateur", targetNamespace = "http://webService.wsBiblio.khady.fr/", className = "fr.khady.wsBiblioClient.ListerUtilisateur")
-    @ResponseWrapper(localName = "listerUtilisateurResponse", targetNamespace = "http://webService.wsBiblio.khady.fr/", className = "fr.khady.wsBiblioClient.ListerUtilisateurResponse")
-    @Action(input = "http://webService.wsBiblio.khady.fr/UtilisateurService/listerUtilisateurRequest", output = "http://webService.wsBiblio.khady.fr/UtilisateurService/listerUtilisateurResponse")
-    public List<Utilisateur> listerUtilisateur();
-
-    /**
-     * 
-     * @param motDePasse
-     * @param prénom
-     * @param adresse
-     * @param photo
-     * @param login
-     * @param nom
-     * @param email
-     */
-    @WebMethod
-    @RequestWrapper(localName = "creerUtilisateur", targetNamespace = "http://webService.wsBiblio.khady.fr/", className = "fr.khady.wsBiblioClient.CreerUtilisateur")
-    @ResponseWrapper(localName = "creerUtilisateurResponse", targetNamespace = "http://webService.wsBiblio.khady.fr/", className = "fr.khady.wsBiblioClient.CreerUtilisateurResponse")
-    @Action(input = "http://webService.wsBiblio.khady.fr/UtilisateurService/creerUtilisateurRequest", output = "http://webService.wsBiblio.khady.fr/UtilisateurService/creerUtilisateurResponse")
-    public void creerUtilisateur(
-        @WebParam(name = "nom", targetNamespace = "")
-        String nom,
-        @WebParam(name = "pr\u00e9nom", targetNamespace = "")
-        String prénom,
-        @WebParam(name = "adresse", targetNamespace = "")
-        String adresse,
-        @WebParam(name = "email", targetNamespace = "")
-        String email,
-        @WebParam(name = "login", targetNamespace = "")
-        String login,
-        @WebParam(name = "motDePasse", targetNamespace = "")
-        String motDePasse,
-        @WebParam(name = "photo", targetNamespace = "")
-        String photo);
 
 }

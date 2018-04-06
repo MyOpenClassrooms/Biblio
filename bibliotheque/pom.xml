@@ -32,15 +32,7 @@
 
     </build>
  <modules>
-    <module>webService</module>
     <module>batchRelance</module>
- <module>test</module>
-    <module>webServices</module>
-    <module>webServiceBiblio</module>
-    <module>webServiceBottomTest</module>
-    <module>webServiceTest</module>
-    <module>webServiceBibliotheque</module>
-    <module>soapBibliotheque</module>
     <module>wsBiblio</module>
   </modules>
 </project>

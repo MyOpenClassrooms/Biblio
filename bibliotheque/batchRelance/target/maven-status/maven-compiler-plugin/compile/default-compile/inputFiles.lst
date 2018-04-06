@@ -1,5 +1,7 @@
 C:\Users\khabar\MonDepot_P4\bibliotheque\batchRelance\target\generated-sources\wsimport\fr\khady\wsBiblioClient\package-info.java
 C:\Users\khabar\MonDepot_P4\bibliotheque\batchRelance\target\generated-sources\wsimport\fr\khady\wsBiblioClient\TrouverUtilisateurParIdResponse.java
+C:\Users\khabar\MonDepot_P4\bibliotheque\batchRelance\src\main\java\fr\khady\batchRelance\UtilisateurItemProcessor.java
+C:\Users\khabar\MonDepot_P4\bibliotheque\batchRelance\src\main\java\fr\khady\batchRelance\UtilisateurItemReader.java
 C:\Users\khabar\MonDepot_P4\bibliotheque\batchRelance\target\generated-sources\wsimport\fr\khady\wsBiblioClient\ListerUtilisateurRelance.java
 C:\Users\khabar\MonDepot_P4\bibliotheque\batchRelance\target\generated-sources\wsimport\fr\khady\wsBiblioClient\Utilisateur.java
 C:\Users\khabar\MonDepot_P4\bibliotheque\batchRelance\target\generated-sources\wsimport\fr\khady\wsBiblioClient\BibliothequeFault.java
@@ -14,5 +16,9 @@ C:\Users\khabar\MonDepot_P4\bibliotheque\batchRelance\target\generated-sources\w
 C:\Users\khabar\MonDepot_P4\bibliotheque\batchRelance\target\generated-sources\wsimport\fr\khady\wsBiblioClient\ListerUtilisateur.java
 C:\Users\khabar\MonDepot_P4\bibliotheque\batchRelance\target\generated-sources\wsimport\fr\khady\wsBiblioClient\ObjectFactory.java
 C:\Users\khabar\MonDepot_P4\bibliotheque\batchRelance\src\main\java\fr\khady\batchRelance\MailBatchApplication.java
+C:\Users\khabar\MonDepot_P4\bibliotheque\batchRelance\src\main\java\fr\khady\batchRelance\MailBatchItemWriter.java
 C:\Users\khabar\MonDepot_P4\bibliotheque\batchRelance\target\generated-sources\wsimport\fr\khady\wsBiblioClient\BibliothequeException.java
+C:\Users\khabar\MonDepot_P4\bibliotheque\batchRelance\src\main\java\fr\khady\batchRelance\BatchScheduler.java
+C:\Users\khabar\MonDepot_P4\bibliotheque\batchRelance\src\main\java\fr\khady\batchRelance\UtilisateurClient.java
+C:\Users\khabar\MonDepot_P4\bibliotheque\batchRelance\src\main\java\fr\khady\batchRelance\BatchConfiguration.java
 C:\Users\khabar\MonDepot_P4\bibliotheque\batchRelance\target\generated-sources\wsimport\fr\khady\wsBiblioClient\ModifierUtilisateur.java
