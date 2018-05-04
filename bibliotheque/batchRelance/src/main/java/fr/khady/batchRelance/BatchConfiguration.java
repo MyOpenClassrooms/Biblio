@@ -67,7 +67,7 @@ public class BatchConfiguration {
 	}
 	
 	//envoi le mail à 17h 53 minutes 1 seconde et s'exécute toutes les 3 minutes jusqu'à 18 heures
-	@Scheduled(cron = "1 07/3 17 * * ?")
+	@Scheduled(cron = "1 31/3 17 * * ?")
 	public void perform() throws Exception {
 
 		System.out.println("Job Started at :" + new Date());

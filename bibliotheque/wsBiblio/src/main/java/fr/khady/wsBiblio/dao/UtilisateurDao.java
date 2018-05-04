@@ -19,6 +19,10 @@ public class UtilisateurDao {
 	
 	private static final String JPQL_SELECT_PAR_DATE_RETOUR = "SELECT u.email FROM utilisateur u,pret p WHERE u.id_user=p.id_user " + 
 			"AND p.rendu = false AND DATE_PART('day', NOW()::timestamp - '2018-03-28'::timestamp) > 0";
+    
+	 private static final String JPQL_SELECT_PAR_EMAIL = "SELECT u FROM Utilisateur u WHERE u.email=:email AND u.password=:password";
+	    private static final String PARAM_EMAIL  = "email";
+	    private static final String PARAM_PASSWORD = "password";
 
 	public void creerUtilisateur(String nom, String prenom, String adress, String email, String login, String password,
 			String photo) throws DaoException {
@@ -68,11 +72,28 @@ public class UtilisateurDao {
 
 	}
 
-	public Utilisateur trouverUtilisateurParId(long id_user) {
+	public Utilisateur trouverUtilisateurParId(Long id_user) {
 
 		Utilisateur utilisateur = entityManager.find(Utilisateur.class, id_user);
 		return utilisateur;
 	}
+
+	public Utilisateur trouverUtilisateurParEmail(String email, String password)  throws DaoException {
+		
+		  Utilisateur utilisateur = null;
+	        Query requete = entityManager.createQuery( JPQL_SELECT_PAR_EMAIL );
+	        requete.setParameter( PARAM_EMAIL, email );
+	        requete.setParameter(PARAM_PASSWORD, password);
+	        try {
+	            utilisateur = (Utilisateur) requete.getSingleResult();
+	        } catch ( NoResultException e ) {
+	            return null;
+	        } catch ( Exception e ) {
+	            throw new DaoException( e );
+	        }
+	        return utilisateur;
+	    }
+	
 
 	@SuppressWarnings("unchecked")
 	public List<String> listerUtilisateurRelance() throws DaoException {

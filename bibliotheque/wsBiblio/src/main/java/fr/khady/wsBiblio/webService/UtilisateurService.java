@@ -47,7 +47,7 @@ public class UtilisateurService {
 	}
 
 	@WebMethod
-	public Utilisateur trouverUtilisateurParId(@WebParam(name = "id_user") long id_user) throws BibliothequeException {
+	public Utilisateur trouverUtilisateurParId(@WebParam(name = "id_user") Long id_user) throws BibliothequeException {
 		
 		BibliothequeFault fault = new BibliothequeFault();
 		Utilisateur utilisateur = dao.trouverUtilisateurParId(id_user);
@@ -56,6 +56,18 @@ public class UtilisateurService {
 		} else
 			throw new BibliothequeException("Aucun utilisateur trouvé pour l'id " + id_user, fault);
 	}
+	
+	@WebMethod
+	public Utilisateur trouverUtilisateurParEmail(@WebParam(name = "email")String email, @WebParam(name = "password")String password) throws BibliothequeException {
+		
+		BibliothequeFault fault = new BibliothequeFault();
+		Utilisateur utilisateur = dao.trouverUtilisateurParEmail(email, password);
+		if (utilisateur != null) {
+			return utilisateur;
+		} else
+			throw new BibliothequeException("Aucun utilisateur trouvé pour l'email " + email, fault);
+	}
+
 
 	@WebMethod
 	public List<String> listerUtilisateurRelance() {

@@ -1,0 +1,87 @@
+html {
+	
+}
+
+body {
+	background: fixed;
+	background-image: URL(../img/bg.jpg);
+	background-repeat: no-repeat;
+	font-family: 'Amiri', serif;
+	font-size: 17px
+}
+
+.navbar {
+	font-family: 'georgia', sans-serif;
+	font-size: 16px;
+}
+
+.form-control {
+	font-size: 16px;
+	padding: 0 12px;
+}
+
+
+fieldset {
+	border: 0;
+	margin: 0 100px 0 0;
+	min-width: 0;
+	padding: 0;
+}
+
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive,
+	.thumbnail a>img, .thumbnail>img {
+	height: 200px;
+}
+
+.pos {
+	height: 120px;
+	padding: 30px;
+}
+
+
+.cad {
+	border: 1px solid #FFFFFF;
+	border-radius: 10px;
+	height: auto;
+	margin: -15px 360px 25px;
+	padding: 15px;
+	width: 350px;
+}
+
+.glyphicon-folder-open, .glyphicon-user, .glyphicon-calendar,
+	.glyphicon-eye-open, .glyphicon-comment {
+	padding: 5px;
+}
+
+.centre {
+	background-color: rgba(255, 255, 255, 0.75);
+}
+
+.navbar-default {
+    background-color: #f6f5f5;
+    border-color: #f6f5f5;
+}
+.navbar-default .navbar-nav>li>a {
+    color: #555;
+}
+.glyphicon-home:before {
+    color: #555;
+}
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+    color: #777;
+}
+button, html input[type=button], input[type=reset], input[type=submit] {
+    float: right;
+    margin-left: 15PX;
+} 
+    .custab{
+    border: 1px solid #d9edf7;
+    padding: 5px;
+    margin: 5% 0;
+    box-shadow: 3px 3px 2px #ccc;
+    transition: 0.5s;
+    }
+.custab:hover{
+    box-shadow: 3px 3px 0px transparent;
+    transition: 0.5s;
+    }

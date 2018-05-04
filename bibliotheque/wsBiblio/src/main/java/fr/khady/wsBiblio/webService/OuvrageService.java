@@ -49,34 +49,46 @@ public class OuvrageService {
 	}
 
 	@WebMethod
-	public Ouvrage trouverOuvrageParIsbn(@WebParam(name = "isbn") String isbn) throws BibliothequeException {
+	public List<Ouvrage> trouverOuvrageParIsbn(@WebParam(name = "isbn") String isbn) throws BibliothequeException {
 
 		BibliothequeFault fault = new BibliothequeFault();
-		Ouvrage ouvrage = dao.trouverOuvrageParIsbn(isbn);
-		if (ouvrage != null) {
-			return ouvrage;
+		List<Ouvrage> ouvrages = dao.trouverOuvrageParIsbn(isbn);
+		if (ouvrages != null) {
+			return ouvrages;
 		} else
 			throw new BibliothequeException("Aucun ouvrage trouvé pour l'isbn " + isbn, fault);
 	}
 	
 	@WebMethod
-	public Ouvrage trouverOuvrageParTitre(@WebParam(name = "titre") String titre) throws BibliothequeException {
+	public List<Ouvrage> trouverOuvrageParIsbnTitreAuteur(@WebParam(name = "isbn") String isbn,@WebParam(name = "titre") String titre,@WebParam(name = "auteur") String nom, @WebParam(name = "disponibilité") Boolean dispo) throws BibliothequeException {
 
 		BibliothequeFault fault = new BibliothequeFault();
-		Ouvrage ouvrage = dao.trouverOuvrageParTitre(titre);
-		if (ouvrage != null) {
-			return ouvrage;
+		List<Ouvrage> ouvrages = dao.trouverOuvrageParIsbnTitreAuteur(isbn, titre, nom, dispo);
+		if (ouvrages != null) {
+			return ouvrages;
+		} else
+			throw new BibliothequeException("Aucun ouvrage trouvé pour l'isbn " + isbn, fault);
+	}
+	
+	
+	@WebMethod
+	public List<Ouvrage> trouverOuvrageParTitre(@WebParam(name = "titre") String titre) throws BibliothequeException {
+
+		BibliothequeFault fault = new BibliothequeFault();
+		List<Ouvrage> ouvrages = dao.trouverOuvrageParTitre(titre);
+		if (ouvrages != null) {
+			return ouvrages;
 		} else
 			throw new BibliothequeException("Aucun ouvrage trouvé pour le titre " + titre, fault);
 	}
 	
 	@WebMethod
-	public Ouvrage trouverOuvrageParAuteur(@WebParam(name = "auteur") long idAut) throws BibliothequeException {
+	public List<Ouvrage> trouverOuvrageParAuteur(@WebParam(name = "auteur") long idAut) throws BibliothequeException {
 
 		BibliothequeFault fault = new BibliothequeFault();
-		Ouvrage ouvrage = dao.trouverOuvrageParAuteur(idAut);
-		if (ouvrage != null) {
-			return ouvrage;
+		List<Ouvrage> ouvrages = dao.trouverOuvrageParAuteur(idAut);
+		if (ouvrages != null) {
+			return ouvrages;
 		} else
 			throw new BibliothequeException("Aucun ouvrage trouvé pour l'auteur " + idAut, fault);
 	}
@@ -93,12 +105,12 @@ public class OuvrageService {
 	}
 	
 	@WebMethod
-	public Ouvrage trouverOuvrageParDisponiblite(@WebParam(name = "disponiblite") Boolean disponibilite) throws BibliothequeException {
+	public List<Ouvrage>trouverOuvrageParDisponiblite(@WebParam(name = "disponiblite") Boolean disponibilite) throws BibliothequeException {
 
 		BibliothequeFault fault = new BibliothequeFault();
-		Ouvrage ouvrage = dao.trouverOuvrageParDisponiblite(disponibilite);
-		if (ouvrage != null) {
-			return ouvrage;
+		List<Ouvrage> ouvrages = dao.trouverOuvrageParDisponiblite(disponibilite);
+		if (ouvrages != null) {
+			return ouvrages;
 		} else
 			throw new BibliothequeException("Aucun ouvrage trouvé pour la disponilité " + disponibilite, fault);
 	}

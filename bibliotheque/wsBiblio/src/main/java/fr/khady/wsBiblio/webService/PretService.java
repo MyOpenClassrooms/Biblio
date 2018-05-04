@@ -1,6 +1,7 @@
 package fr.khady.wsBiblio.webService;
 
-import java.sql.Date;
+
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -9,10 +10,7 @@ import javax.jws.WebParam;
 import javax.jws.WebService;
 
 import fr.khady.wsBiblio.dao.PretDao;
-import fr.khady.wsBiblio.entity.Auteur;
-import fr.khady.wsBiblio.entity.Exemplaire;
 import fr.khady.wsBiblio.entity.Pret;
-import fr.khady.wsBiblio.entity.Utilisateur;
 import fr.khady.wsBiblio.exception.BibliothequeException;
 import fr.khady.wsBiblio.exception.BibliothequeFault;
 
@@ -36,11 +34,17 @@ public class PretService {
 		return dao.listerPret();
 	}
 
+//	@WebMethod
+//	public void modifierPret(@WebParam(name = "dateSortie") Date dateSortie,
+//			@WebParam(name = "dateRetourPrevu") Date dateRetourPrevu, @WebParam(name = "exemplaire") long idExemp,
+//			@WebParam(name = "utilisateur") long idUser, @WebParam(name = "rendu") Boolean rendu) {
+//		dao.modifierPret(dateSortie, dateRetourPrevu, idExemp, idUser, rendu);
+//
+//	}
+	
 	@WebMethod
-	public void modifierPret(@WebParam(name = "dateSortie") Date dateSortie,
-			@WebParam(name = "dateRetourPrevu") Date dateRetourPrevu, @WebParam(name = "exemplaire") long idExemp,
-			@WebParam(name = "utilisateur") long idUser, @WebParam(name = "rendu") Boolean rendu) {
-		dao.modifierPret(dateSortie, dateRetourPrevu, idExemp, idUser, rendu);
+	public int modifierPret(@WebParam(name = "dateRetourPrevu") Date dateRetourPrevu) {
+	return 	dao.modifierPret(dateRetourPrevu);
 
 	}
 	
@@ -56,16 +60,28 @@ public class PretService {
 	}
 
 	@WebMethod
-	public Pret trouverPretParDateRetourPrevu(@WebParam(name = "dateRetourPrevu") Date dateReour)
-			throws BibliothequeException {
+	public List<Pret> trouverPretParDateRetourPrevu(@WebParam(name = "dateRetourPrevu") Date dateReour) throws BibliothequeException {
 
 		BibliothequeFault fault = new BibliothequeFault();
-		Pret pret = dao.trouverPretParDateRetourPrevu(dateReour);
-		if (pret != null) {
-			return pret;
+		List<Pret> prets = dao.trouverPretParDateRetourPrevu(dateReour);
+		if (prets != null) {
+			return prets;
 		} else
-			throw new BibliothequeException("Aucun pret trouvé pour la date " + dateReour, fault);
+			throw new BibliothequeException("Aucun ouvrage trouvé pour le titre " + dateReour, fault);
 	}
+	
+	
+//	@WebMethod
+//	public Pret trouverPretParDateRetourPrevu(@WebParam(name = "dateRetourPrevu") Date dateReour)
+//			throws BibliothequeException {
+//
+//		BibliothequeFault fault = new BibliothequeFault();
+//		Pret pret = dao.trouverPretParDateRetourPrevu(dateReour);
+//		if (pret != null) {
+//			return pret;
+//		} else
+//			throw new BibliothequeException("Aucun pret trouvé pour la date " + dateReour, fault);
+//	}
 
 	@WebMethod
 	public Pret trouverPretParDateSortie(@WebParam(name = "dateSortie") Date dateSortie) throws BibliothequeException {
@@ -78,15 +94,16 @@ public class PretService {
 			throw new BibliothequeException("Aucun pret trouvé pour la date " + dateSortie, fault);
 	}
 
+	
 	@WebMethod
-	public Pret trouverPretParUtilisateur(@WebParam(name = "utilisateur") long IdUser) throws BibliothequeException {
+	public List<Pret> trouverPretParUtilisateur(@WebParam(name = "utilisateur") long idUser) throws BibliothequeException {
 
 		BibliothequeFault fault = new BibliothequeFault();
-		Pret pret = dao.trouverPretParUtilisateur(IdUser);
-		if (pret != null) {
-			return pret;
+		List<Pret> prets = dao.trouverPretParUtilisateur(idUser);
+		if (prets != null) {
+			return prets;
 		} else
-			throw new BibliothequeException("Aucun pret trouvé pour l'utilisateur " + IdUser, fault);
+			throw new BibliothequeException("Aucun ouvrage trouvé pour le titre " + idUser, fault);
 	}
 
 	@WebMethod

@@ -21,10 +21,14 @@ public class OuvrageDao {
 
 	private static final String JPQL_SELECT_PAR_TITRE = "SELECT o FROM Ouvrage o WHERE o.titre=:titre";
 	private static final String JPQL_SELECT_PAR_ISBN = "SELECT o FROM Ouvrage o WHERE o.isbn=:isbn";
+	private static final String JPQL_SELECT_PAR_ISBN_TITRE_AUTEUR = "SELECT o FROM Ouvrage o WHERE o.isbn=:isbn"
+			+ " OR o.titre=:titre OR o.auteur.nom=:nom OR o.disponibilite=:dispo";
+	private static final String JPQL_SELECT_PAR_AUTEUR = "SELECT o FROM Ouvrage o WHERE o.auteur.idAuteur=:idAut";
 	private static final String JPQL_SELECT_PAR_DISPONIBLITE = "SELECT o FROM Ouvrage o WHERE o.disponibilite=:disponibilite";
 	private static final String PARAM_TITRE = "titre";
 	private static final String PARAM_ISBN = "isbn";
-	private static final String PARAM_DISPONIBLITE = "disponibilite";
+	private static final String PARAM_AUTEUR = "nom";
+	private static final String PARAM_DISPONIBLITE = "dispo";
 
 	public void creerOuvrage(String isbn, String titre, String resume, int nbrpage, Date dateParution,
 			Boolean disponibilite, String photoCouverture, long idCat, long idAut) throws DaoException {
@@ -71,67 +75,77 @@ public class OuvrageDao {
 		return ouvrage;
 	}
 
-	public Ouvrage trouverOuvrageParIsbn(String isbn) {
 
-		// Ouvrage ouvrage = entityManager.find(Ouvrage.class, isbn);
+	  @SuppressWarnings("unchecked")
+		public List<Ouvrage> trouverOuvrageParIsbnTitreAuteur(String isbn, String titre, String nom, Boolean dispo) throws DaoException {
+			Query req = entityManager.createQuery(JPQL_SELECT_PAR_ISBN_TITRE_AUTEUR);
+			req.setParameter(PARAM_ISBN, isbn);
+			req.setParameter(PARAM_TITRE, titre);
+			req.setParameter(PARAM_AUTEUR, nom);
+			req.setParameter(PARAM_DISPONIBLITE, dispo);
+			try {
+				return req.getResultList();
+			} catch (Exception e) {
+				throw new DaoException(e);
+			}
+	  }
 
-		Ouvrage ouvrage = null;
-		Query requete = entityManager.createQuery(JPQL_SELECT_PAR_ISBN);
-		requete.setParameter(PARAM_ISBN, isbn);
+	  @SuppressWarnings("unchecked")
+		public List<Ouvrage> trouverOuvrageParIsbn(String isbn) throws DaoException {
+			Query req = entityManager.createQuery(JPQL_SELECT_PAR_ISBN);
+			req.setParameter(PARAM_ISBN, isbn);
+			try {
+				return req.getResultList();
+			} catch (Exception e) {
+				throw new DaoException(e);
+			}
+	  }
+	  
+	@SuppressWarnings("unchecked")
+	public List<Ouvrage> trouverOuvrageParTitre(String titre) throws DaoException {
+		Query req = entityManager.createQuery(JPQL_SELECT_PAR_TITRE);
+		req.setParameter(PARAM_TITRE, titre);
 		try {
-			ouvrage = (Ouvrage) requete.getSingleResult();
-		} catch (NoResultException e) {
-			return null;
+			return req.getResultList();
 		} catch (Exception e) {
 			throw new DaoException(e);
 		}
 
-		return ouvrage;
 	}
-
-	public Ouvrage trouverOuvrageParTitre(String titre) {
-		Ouvrage ouvrage = null;
-		Query requete = entityManager.createQuery(JPQL_SELECT_PAR_TITRE);
-		requete.setParameter(PARAM_TITRE, titre);
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<Ouvrage> trouverOuvrageParAuteur(long idAut) throws DaoException {
+		Query req = entityManager.createQuery(JPQL_SELECT_PAR_AUTEUR);
+		req.setParameter(PARAM_AUTEUR, idAut);
 		try {
-			ouvrage = (Ouvrage) requete.getSingleResult();
-		} catch (NoResultException e) {
-			return null;
+			return req.getResultList();
 		} catch (Exception e) {
 			throw new DaoException(e);
 		}
 
-		// Ouvrage ouvrage = entityManager.find(Ouvrage.class, titre);
-
-		return ouvrage;
 	}
+	
 
-	public Ouvrage trouverOuvrageParAuteur(long idAut) {
-
-		Ouvrage ouvrage = entityManager.find(Ouvrage.class, idAut);
-		return ouvrage;
-	}
 
 	public Ouvrage trouverOuvrageParCategorie(long idCat) {
 
 		Ouvrage ouvrage = entityManager.find(Ouvrage.class, idCat);
 		return ouvrage;
 	}
-
-	public Ouvrage trouverOuvrageParDisponiblite(Boolean disponibilite) {
-
-		// Ouvrage ouvrage = entityManager.find(Ouvrage.class, disponibilite);
-
-		Ouvrage ouvrage = null;
-		Query requete = entityManager.createQuery(JPQL_SELECT_PAR_DISPONIBLITE);
-		requete.setParameter(PARAM_DISPONIBLITE, disponibilite);
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<Ouvrage> trouverOuvrageParDisponiblite(Boolean disponibilite) throws DaoException {
+		Query req = entityManager.createQuery(JPQL_SELECT_PAR_DISPONIBLITE);
+		req.setParameter(PARAM_DISPONIBLITE, disponibilite);
 		try {
-			ouvrage = (Ouvrage) requete.getSingleResult();
-		} catch (NoResultException e) {
-			return null;
+			return req.getResultList();
 		} catch (Exception e) {
 			throw new DaoException(e);
 		}
-		return ouvrage;
+
 	}
+	
+
 }
