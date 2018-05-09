@@ -58,7 +58,7 @@ _Intallation des outils_
 
 **Pour Maven il faut:**
 
-* installer **Maven** dans votre machine: télécharger et dézipper maven dans un répertoire de votre machine, ajouter la variable d’environnement utilisateur avec pour valeur le chemin du répertoire et lancer une nouvelle commande MS-DOS et exécuter ** mvn version** pour vérifier l’installation.
+* installer **Maven** dans votre machine: télécharger et dézipper maven dans un répertoire de votre machine, ajouter la variable d’environnement utilisateur avec pour valeur le chemin du répertoire et lancer une nouvelle commande MS-DOS et exécuter **mvn version** pour vérifier l’installation.
  
 **Pour le déploiement du projet il faut**
 
@@ -76,13 +76,21 @@ _Intallation des outils_
 
 * dans votre IDE , faire importer ‘un projet maven existant’ puis sélectionner le dossier **bibliotheque** et suivre les instructions. 
 
-* cliquer droit sur le projet **Run as** puis **maven package**
+**Déploiement du webService**
+
+* cliquer droit sur le module wsBiblio **Run as** puis **maven package** et importer le war généré dans **GlassFish**
+
+**Déploiement de la WebApp**
+
+* cliquer droit sur le module **webAppliBiblio** et **Run as** puis **maven package**
 
 * lancer le module **webAppliBiblio** sur le serveur puis entrer dans le navigateur l'url http://localhost:8080/webAppliBiblio/ et enjoy!!!
 
 **Sans IDE**
 
-* se positionner dans le dossier bibliotheque et exécuter la commande **mvn package** : un fichier war sera généré 
+* se positionner dans le dossier **webAppliBiblio** et exécuter la commande **mvn package** : un fichier war sera généré 
+
+* se positionner dans le dossier **wsBiblio** et exécuter la commande **mvn package** : un fichier war sera généré 
 
 * aller à **http://localhost:4848/** sur **Applications** puis **Deploy** une nouvelle fénêtre s’ouvre  choisir le **war généré** et **OK**, pour lncer l’application cliquer sur **launch** puis sur **le premier lien** and Injoy !!!!
 
