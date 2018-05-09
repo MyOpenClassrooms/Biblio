@@ -51,7 +51,7 @@ _Intallation des outils_
 
 **Pour GlassFish il faut:**
 
-* installer ** GlassFish ** dans votre machine: télécharger et dézipper GlassFish dans un répertoire de votre machine puis se placer dans le dossier **bin** et lancer la commande  **asadmin start-domain domain1** et dans le navigateur taper **http://localhost:4848/**
+* installer **GlassFish** dans votre machine: télécharger et dézipper GlassFish dans un répertoire de votre machine puis se placer dans le dossier **bin** et lancer la commande  **asadmin start-domain domain1** et dans le navigateur taper **http://localhost:4848/**
 
 * configurer **GlassFish** dans votre **IDE** : depuis l’interface de votre IDE faire **new** puis **other** et choisir **server**, **next** choisir la version installée dans votre machine **finish** et pour le démarrer **windows**, **show view** et choisir **server** et il apparaitra dans l’ide ou vous pouvez le démarrer l’arrêter, le supprimer…
 
