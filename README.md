@@ -1,7 +1,7 @@
 _Gestion d’une bibliothèque_
 --------
 
-Cette application a pour objectif le suivi et la gestion des prêts des ouvrages pour les usagers, de ce fait le lecteur peut:
+Cette application a pour objectif le suivi et la gestion des prêts des ouvrages, de ce fait le lecteur peut:
 
 * s’inscrire et s’authentifier pour certaines actions,
 
@@ -20,7 +20,7 @@ _Technologies utilisées :_
 
 * Serveur **GlassFish 5.0**
 
-* Base de données **PostGreSQL 9.2**
+* L'image de la base de données **Docker ToolBox**
 
 * Packagée (WAR) avec **Maven**
 
@@ -30,6 +30,7 @@ _Outils_
 * **Eclipse**
 * **Papyrus**
 * **SQL Workbench**
+* **Docker Kitmatic**
 * **SQL Power Architect**
 
 _Intallation des outils_
@@ -37,7 +38,7 @@ _Intallation des outils_
 
 **Pour SQL Workbench il faut:**
 
-* installer **SQL Workbench** : télécharger et lancer le fichier SQLWorkbench.exe.
+* installer **SQL Workbench** : télécharger **SQL Workbench** et lancer le fichier SQLWorkbench.exe.
 
 * une fois l’interface lancée : aller à **file** puis **connect window**, une fenêtre s’ouvre renseigner le driver(**org.postgresql.Driver.jar**), l’url (**jdbc:postgresql://192.168.99.100:32768/bibliotheque**), le userName (**khady**) et enfin le mot de passe(**0302**) et la base de sonnée est maintenant disponible 
 
@@ -51,7 +52,7 @@ _Intallation des outils_
 
 **Pour GlassFish il faut:**
 
-* installer **GlassFish** dans votre machine: télécharger et dézipper GlassFish dans un répertoire de votre machine puis se placer dans le dossier **bin** et lancer la commande  **asadmin start-domain domain1** et dans le navigateur taper **http://localhost:4848/**
+* installer **GlassFish** dans votre machine: télécharger et dézipper GlassFish dans un répertoire de votre machine puis se placer dans le dossier **bin** ,ouvre l'invite de commande et lancer **asadmin start-domain domain1** pour accéder au serveur dans le navigateur taper **http://localhost:4848/**
 
 * configurer **GlassFish** dans votre **IDE** : depuis l’interface de votre IDE faire **new** puis **other** et choisir **server**, **next** choisir la version installée dans votre machine **finish** et pour le démarrer **windows**, **show view** et choisir **server** et il apparaitra dans l’ide ou vous pouvez le démarrer l’arrêter, le supprimer…
 
