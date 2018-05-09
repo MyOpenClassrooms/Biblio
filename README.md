@@ -77,7 +77,7 @@ _Intallation des outils_
 
 * cliquer droit sur le projet **Run as** puis **maven package**
 
-* lancer le module **webAppliBiblio** sur le serveur puis entrer dans le navigateur l'url _ http://localhost:8080/webAppliBiblio/_ et enjoy!!!
+* lancer le module **webAppliBiblio** sur le serveur puis entrer dans le navigateur l'url http://localhost:8080/webAppliBiblio/ et enjoy!!!
 
 **Sans IDE**
 
