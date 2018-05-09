@@ -39,7 +39,7 @@ _Intallation des outils_
 
 * installer **SQL Workbench** : télécharger et lancer le fichier SQLWorkbench.exe.
 
-* une fois l’interface lancée : aller à **file** puis **connect window**, une fenêtre s’ouvre renseigner le driver(org.postgresql.Driver.jar), l’url (jdbc:postgresql://192.168.99.100:32768/bibliotheque), le userName (khady) et enfin le mot de passe(0302) et la base de sonnée est maintenant disponible 
+* une fois l’interface lancée : aller à **file** puis **connect window**, une fenêtre s’ouvre renseigner le driver(**org.postgresql.Driver.jar**), l’url (**jdbc:postgresql://192.168.99.100:32768/bibliotheque**), le userName (**khady**) et enfin le mot de passe(**0302**) et la base de sonnée est maintenant disponible 
 
 **Pour Java 8 (JDK 8) il faut:**
 
