@@ -33,7 +33,8 @@
 										    Disponible
 										</s:else></b>
 									<br />
-									Catégorie: <b><s:property value="ouvrage.categorie.libelle" /></b>
+									Catégorie: <b><s:property value="ouvrage.categorie.libelle" /></b><br />
+									Nombre d'exemplaire: <b><s:property value="exemplaire.nbrExemplaire" /></b>
 									
 									<section style="margin-top: 75px">
 										<p>

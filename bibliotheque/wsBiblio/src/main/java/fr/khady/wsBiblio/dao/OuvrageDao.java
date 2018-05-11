@@ -127,7 +127,6 @@ public class OuvrageDao {
 	}
 	
 
-
 	public Ouvrage trouverOuvrageParCategorie(long idCat) {
 
 		Ouvrage ouvrage = entityManager.find(Ouvrage.class, idCat);

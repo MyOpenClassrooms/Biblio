@@ -17,6 +17,9 @@ public class ExemplaireDao {
 	@PersistenceContext(unitName = "bdd_biblio_PU")
 	private EntityManager entityManager;
 
+	private static final String JPQL_SELECT_PAR_OUVRAGE = "SELECT e FROM Exemplaire e WHERE e.ouvrage.idOuvrage=:idOuvrage";
+	private static final String PARAM_ID_OUVRAGE = "idOuvrage";
+	
 	public void creerExemplaire(int nbrExemp, int numRayon, long  idOuvrage) throws DaoException {
 		Exemplaire exemplaire = new Exemplaire();
 		Ouvrage ouvrage = new Ouvrage();
@@ -45,10 +48,27 @@ public class ExemplaireDao {
 
 	}
 
-	public Exemplaire trouverExemplaireParId(long idExemp) {
-
-		Exemplaire exemplaire = entityManager.find(Exemplaire.class, idExemp);
+	public Exemplaire trouverExemplaireParOuvrage(long idOuvrage) {
+		Exemplaire exemplaire = entityManager.find(Exemplaire.class, idOuvrage);
 		return exemplaire;
 	}
+	
+    public Exemplaire trouverExemplaireParId(long idExemp)  throws DaoException {
+    	Exemplaire exemplaire = null;
+        Query requete = entityManager.createQuery( JPQL_SELECT_PAR_OUVRAGE );
+        requete.setParameter( PARAM_ID_OUVRAGE, idExemp );
+        try {
+        	exemplaire = (Exemplaire) requete.getSingleResult();
+        } catch (Exception e) {
+			throw new DaoException(e);
+		}
+        return exemplaire;
+    }
+	
+//	
+//	public Exemplaire trouverExemplaireParOuvrage(long idOuvrage) {
+//		Exemplaire exemplaire = entityManager.find(Exemplaire.class, idOuvrage);
+//		return exemplaire;
+//	}
 
 }

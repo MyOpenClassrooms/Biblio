@@ -106,12 +106,18 @@
 						<wsdlUrl>
 							http://lfr003015:8080/wsBiblio/OuvrageService?wsdl
 						</wsdlUrl>
-							<wsdlUrl>
-						http://lfr003015:8080/wsBiblio/PretService?wsdl
+						<wsdlUrl>
+							http://lfr003015:8080/wsBiblio/PretService?wsdl
 						</wsdlUrl>
 						<wsdlUrl>
-						http://lfr003015:8080/wsBiblio/AuteurService?wsdl
-							</wsdlUrl>
+							http://lfr003015:8080/wsBiblio/AuteurService?wsdl
+						</wsdlUrl>
+						<wsdlUrl>
+							http://lfr003015:8080/wsBiblio/ExemplaireService?wsdl
+						</wsdlUrl>
+						<wsdlUrl>
+							http://lfr003015:8080/wsBiblio/CategorieService?wsdl
+						</wsdlUrl>
 					</wsdlUrls>
 				</configuration>
 			</plugin>

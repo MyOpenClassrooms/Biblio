@@ -15,6 +15,7 @@
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
+		
 		<global-results>
 			<result name="error-forbidden" type="httpheader">
 				<param name="error">403</param>
@@ -130,9 +131,9 @@
 	<!-- ===== Package pour les actions privées ===== -->
 	<package name="private" extends="base">
 		<default-interceptor-ref name="authenticatedStack" />
-		<!-- <action name="pret" class="fr.khady.webAppliBiblio.action.GestionPretAction" -->
-		<!-- method="index"> -->
-		<!-- <result name="success">views/pret.jsp</result> -->
-		<!-- </action> -->
+<!-- 		<action name="pret" class="fr.khady.webAppliBiblio.action.GestionPretAction" -->
+<!-- 		method="index"> -->
+<!-- 		<result name="success">views/pret.jsp</result> -->
+<!-- 		</action> -->
 	</package>
 </struts>

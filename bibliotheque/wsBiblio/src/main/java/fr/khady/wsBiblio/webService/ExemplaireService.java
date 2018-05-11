@@ -43,5 +43,15 @@ public class ExemplaireService {
 			throw new BibliothequeException("Aucun exemplaire trouvé pour l'id " + idExemp, fault);
 	}
 
+	@WebMethod
+	public Exemplaire trouverExemplaireParOuvrage(@WebParam(name = "idOuvrage") long idOuvrage) throws BibliothequeException {
+		
+		BibliothequeFault fault = new BibliothequeFault();
+		Exemplaire exemplaire = dao.trouverExemplaireParOuvrage(idOuvrage);
+		if (exemplaire != null) {
+			return exemplaire;
+		} else
+			throw new BibliothequeException("Aucun exemplaire trouvé pour l'ouvrage " + idOuvrage, fault);
+	}
 
 }

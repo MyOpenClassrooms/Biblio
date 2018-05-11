@@ -43,27 +43,25 @@ public class GestionPretAction extends ActionSupport {
 			try {
 				dateConverti = DatatypeFactory.newInstance().newXMLGregorianCalendar(calendar);
 				try {
-//				prets = pretPort.trouverPretParDateRetourPrevu(dateConverti);
+					// prets = pretPort.trouverPretParDateRetourPrevu(dateConverti);
 					System.out.println(" pret " + prets);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				System.out.println(" dateConverti " + dateConverti);
-			    int executeUpdate =	pretPort.modifierPret(dateConverti);
-			
-			if(executeUpdate == 1) {
-				this.addActionMessage("Pret bien prolongé");
+				int executeUpdate = pretPort.modifierPret(dateConverti);
 
-			}
+				if (executeUpdate == 1) {
+					this.addActionMessage("Pret bien prolongé");
+				}
 				// pretPort.listerPret();
 
 			} catch (DatatypeConfigurationException e) {
 				e.printStackTrace();
 			}
 		}
-	
+
 		prets = pretPort.listerPret();
-		
 		return SUCCESS;
 	}
 

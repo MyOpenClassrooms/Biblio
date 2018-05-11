@@ -25,5 +25,6 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="C:/Users/khabar/Downloads/struts2-core-2.1.8.jar/struts2-core-2.1.8.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
