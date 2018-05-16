@@ -1,6 +1,6 @@
 package fr.khady.wsBiblio.webService;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -48,8 +48,8 @@ public class OuvrageService {
 			throw new BibliothequeException("Aucun ouvrage trouvé pour l'id " + idOuvrage, fault);
 	}
 
-	@WebMethod
-	public List<Ouvrage> trouverOuvrageParIsbn(@WebParam(name = "isbn") String isbn) throws BibliothequeException {
+	
+	public List<Ouvrage> trouverOuvrageParIsbn(String isbn) throws BibliothequeException {
 
 		BibliothequeFault fault = new BibliothequeFault();
 		List<Ouvrage> ouvrages = dao.trouverOuvrageParIsbn(isbn);
@@ -71,8 +71,8 @@ public class OuvrageService {
 	}
 	
 	
-	@WebMethod
-	public List<Ouvrage> trouverOuvrageParTitre(@WebParam(name = "titre") String titre) throws BibliothequeException {
+	
+	public List<Ouvrage> trouverOuvrageParTitre(String titre) throws BibliothequeException {
 
 		BibliothequeFault fault = new BibliothequeFault();
 		List<Ouvrage> ouvrages = dao.trouverOuvrageParTitre(titre);
@@ -82,8 +82,8 @@ public class OuvrageService {
 			throw new BibliothequeException("Aucun ouvrage trouvé pour le titre " + titre, fault);
 	}
 	
-	@WebMethod
-	public List<Ouvrage> trouverOuvrageParAuteur(@WebParam(name = "auteur") long idAut) throws BibliothequeException {
+	
+	public List<Ouvrage> trouverOuvrageParAuteur(long idAut) throws BibliothequeException {
 
 		BibliothequeFault fault = new BibliothequeFault();
 		List<Ouvrage> ouvrages = dao.trouverOuvrageParAuteur(idAut);
@@ -93,8 +93,8 @@ public class OuvrageService {
 			throw new BibliothequeException("Aucun ouvrage trouvé pour l'auteur " + idAut, fault);
 	}
 	
-	@WebMethod
-	public Ouvrage trouverOuvrageParCategorie(@WebParam(name = "categorie") long idCat) throws BibliothequeException {
+	
+	public Ouvrage trouverOuvrageParCategorie(long idCat) throws BibliothequeException {
 
 		BibliothequeFault fault = new BibliothequeFault();
 		Ouvrage ouvrage = dao.trouverOuvrageParCategorie(idCat);
@@ -104,8 +104,8 @@ public class OuvrageService {
 			throw new BibliothequeException("Aucun ouvrage trouvé pour la catégorie " + idCat, fault);
 	}
 	
-	@WebMethod
-	public List<Ouvrage>trouverOuvrageParDisponiblite(@WebParam(name = "disponiblite") Boolean disponibilite) throws BibliothequeException {
+	
+	public List<Ouvrage>trouverOuvrageParDisponiblite(Boolean disponibilite) throws BibliothequeException {
 
 		BibliothequeFault fault = new BibliothequeFault();
 		List<Ouvrage> ouvrages = dao.trouverOuvrageParDisponiblite(disponibilite);

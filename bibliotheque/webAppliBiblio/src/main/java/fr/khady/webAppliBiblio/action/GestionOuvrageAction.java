@@ -42,7 +42,7 @@ public class GestionOuvrageAction extends ActionSupport {
 		ouvrages = ouvragePort.listerOuvrage();
 		if (titre == null && isbn == null && nomAuteur == null && dispo == null ) {
 			ouvrages = ouvragePort.listerOuvrage();
-
+//			this.addActionMessage("AUCUN Result pour la recherche");
 		} else{
 			try {
 				ouvrages = ouvragePort.trouverOuvrageParIsbnTitreAuteur(isbn, titre, nomAuteur, dispo);
@@ -51,6 +51,8 @@ public class GestionOuvrageAction extends ActionSupport {
 				this.addActionMessage("AUCUN OUVRAGE");
 			}
 		}
+		
+			
 
 		return SUCCESS;
 	}
@@ -72,19 +74,19 @@ public class GestionOuvrageAction extends ActionSupport {
 		return SUCCESS;
 	}
 
-	public String listeParTitre() {
-		// String vResult = ActionSupport.INPUT;
-		titre = ouvrage.getTitre();
-		System.out.println("titre " + titre);
-		if (titre != null) {
-			try {
-				ouvrages = ouvragePort.trouverOuvrageParTitre(titre);
-
-			} catch (Exception pEx) {
-				this.addActionMessage("AUCUN OUVRAGE");
-			}
-
-		}
-		return SUCCESS;
-	}
+//	public String listeParTitre() {
+//		// String vResult = ActionSupport.INPUT;
+//		titre = ouvrage.getTitre();
+//		System.out.println("titre " + titre);
+//		if (titre != null) {
+//			try {
+//				ouvrages = ouvragePort.trouverOuvrageParTitre(titre);
+//
+//			} catch (Exception pEx) {
+//				this.addActionMessage("AUCUN OUVRAGE");
+//			}
+//
+//		}
+//		return SUCCESS;
+//	}
 }

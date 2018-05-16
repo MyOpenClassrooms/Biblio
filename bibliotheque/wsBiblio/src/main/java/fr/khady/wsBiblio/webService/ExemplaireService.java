@@ -9,6 +9,7 @@ import javax.jws.WebService;
 
 import fr.khady.wsBiblio.dao.ExemplaireDao;
 import fr.khady.wsBiblio.entity.Exemplaire;
+import fr.khady.wsBiblio.entity.Ouvrage;
 import fr.khady.wsBiblio.exception.BibliothequeException;
 import fr.khady.wsBiblio.exception.BibliothequeFault;
 

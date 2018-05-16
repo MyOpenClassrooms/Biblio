@@ -48,15 +48,15 @@ public class ExemplaireDao {
 
 	}
 
-	public Exemplaire trouverExemplaireParOuvrage(long idOuvrage) {
-		Exemplaire exemplaire = entityManager.find(Exemplaire.class, idOuvrage);
+	public Exemplaire trouverExemplaireParId(long idExemp) {
+		Exemplaire exemplaire = entityManager.find(Exemplaire.class, idExemp);
 		return exemplaire;
 	}
 	
-    public Exemplaire trouverExemplaireParId(long idExemp)  throws DaoException {
+    public Exemplaire trouverExemplaireParOuvrage(long idOuvrage)  throws DaoException {
     	Exemplaire exemplaire = null;
         Query requete = entityManager.createQuery( JPQL_SELECT_PAR_OUVRAGE );
-        requete.setParameter( PARAM_ID_OUVRAGE, idExemp );
+        requete.setParameter( PARAM_ID_OUVRAGE, idOuvrage );
         try {
         	exemplaire = (Exemplaire) requete.getSingleResult();
         } catch (Exception e) {

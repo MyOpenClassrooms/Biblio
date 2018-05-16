@@ -1,6 +1,6 @@
 package fr.khady.wsBiblio.webService;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;

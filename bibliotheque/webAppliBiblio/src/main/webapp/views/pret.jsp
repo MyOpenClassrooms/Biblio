@@ -14,8 +14,8 @@
 			<s:actionmessage/>
 				<table class="table table-striped custab">
 					<thead>
-						<a href="#" class="btn btn-primary btn-xs pull-right"><b>+</b>
-							Ajouter un pret</a>
+<!-- 						<a href="#" class="btn btn-primary btn-xs pull-right"><b>+</b> -->
+<!-- 							Ajouter un pret</a> -->
 						<tr>
 							<th>ID du pret</th>
 							<th>Ouvrage</th>

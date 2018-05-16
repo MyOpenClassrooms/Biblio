@@ -21,8 +21,6 @@
 	</properties>
 	<dependencyManagement>
 		<dependencies>
-
-
 			<!-- Framework Apache Struts -->
 			<dependency>
 				<groupId>org.apache.struts</groupId>

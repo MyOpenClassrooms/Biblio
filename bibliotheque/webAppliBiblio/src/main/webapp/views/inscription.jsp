@@ -14,13 +14,13 @@
 			 <s:actionmessage/>
 				<s:form action="ajouterUtilisateur" method="post" theme="bootstrap" cssClass="form-horizontal">
 					<s:textfield label="Nom" name="utilisateur.nom" requiredLabel="true" placeholder="Entrez votre nom" />
-					<s:textfield label="Prénom" name="utilisateur.prenom"
+					<s:textfield label="Prénom" requiredLabel="true" name="utilisateur.prenom"
 						placeholder="Entrez votre prénom" />
 					<s:textfield label="Adresse" name="utilisateur.adress"
 						placeholder="Entrez votre adresse" />
-					<s:textfield label="Email" name="utilisateur.email"
+					<s:textfield label="Email" requiredLabel="true"  name="utilisateur.email"
 						placeholder="Entrez votre email" />
-					<s:password label="Mot de passe" name="utilisateur.password"
+					<s:password label="Mot de passe" requiredLabel="true" name="utilisateur.password"
 						placeholder="Entrez votre mot de passe" />
 					<s:file label="Photo" name="utilisateur.photo" />
 					<s:submit cssClass="btn btn-primary" value="Valider" />

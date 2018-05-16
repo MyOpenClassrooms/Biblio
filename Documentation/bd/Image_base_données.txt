@@ -1,0 +1,6 @@
+Pour se connecter à l'image docker de la base de données il faut renseigner:
+
+Driver  : org.pastgresql.Driver
+Url     : jdbc:postgresql://192.168.99.100:32768/bibliotheque
+UserName: khady
+Password: 0302

@@ -10,8 +10,7 @@
 				</h4>
 			</div>
 			<div class="panel-body">
-				<s:actionerror />
-
+			
 				<s:form action="ouvrage" method="post" theme="simple"
 					cssClass="well form-inline">
 					<s:textfield placeholder="Titre" name="ouvrage.titre" class="form-control" /> 
@@ -24,8 +23,11 @@
 <%-- 					<s:select class="form-control" list="#{'true':'Diponible', 'false':'Indisponible'}" headerKey="-1" headerValue="Choisir la disponibilité" --%>
 <%-- 						name="ouvrage.disponibilite" value="" /> --%>
 					<s:submit value="Rechercher" cssClass="btn btn-primary" />
+					
 				</s:form>
 				<div class="tab-pane active" id="tab1" role="tabpanel">
+					<s:actionmessage/>
+				
 					<s:iterator value="ouvrages">
 
 						<div class="col-sm-3">
