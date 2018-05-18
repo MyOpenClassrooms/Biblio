@@ -31,10 +31,7 @@ public class UtilisateurItemProcessor implements ItemProcessor<String, MimeMessa
 	@Autowired
 	private VelocityEngine engine;
 	private String sender;
-	
-	private List<String> emailList;
-	private int emailCount = 0;
-	
+
 	
 	public UtilisateurItemProcessor(String sender) {
 		this.sender = sender;
@@ -56,15 +53,16 @@ public class UtilisateurItemProcessor implements ItemProcessor<String, MimeMessa
 		for (int i = 0; i < emails.size(); i++) {
 			utilisateur.setEmail(emails.get(i));
 			helper.setTo(utilisateur.getEmail());
-		}
+		
 		
 //		helper.setCc(sender);
 		helper.setSubject(VelocityEngineUtils.mergeTemplateIntoString(engine, "email-subject.vm", "UTF-8", null));
 		helper.setText(VelocityEngineUtils.mergeTemplateIntoString(engine, "email-body.vm", "UTF-8", null));
 		
+		
 		log.info("Preparing message for: " + utilisateur.getEmail());
 		
-		
+		}
 		return message;
 	}
 

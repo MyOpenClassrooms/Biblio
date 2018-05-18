@@ -19,7 +19,14 @@
 		<struts2-jquery.version>4.0.1</struts2-jquery.version>
 		<struts2-bootstrap.version>2.5.0</struts2-bootstrap.version>
 	</properties>
-
+<repositories>
+	<repository>
+		<id>sonatype.oss.snapshots</id>
+		<name>Sonatype OSS Snapshot Repository</name>
+		<url>http://oss.sonatype.org/content/repositories/snapshots</url>
+	
+	</repository>
+</repositories> 
 	<dependencies>
 
 		<dependency>
@@ -123,6 +130,7 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5.1</version>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>

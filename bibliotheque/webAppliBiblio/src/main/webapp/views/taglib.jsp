@@ -13,10 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 <title>Bibliotheque de la ville</title>
-
-<sj:head jqueryui="true" locale="de" loadAtOnce="true"
-	defaultIndicator="indicator" />
-<sb:head />
+<sb:head/>
 <link rel="stylesheet" href='<s:url value="css/style.css"/>'
 	type="text/css" />
 

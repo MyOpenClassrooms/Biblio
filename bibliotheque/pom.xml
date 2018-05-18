@@ -42,7 +42,6 @@
 	<modules>
 		<module>batchRelance</module>
 		<module>wsBiblio</module>
-		<module>webAppBiblio</module>
     <module>webAppliBiblio</module>
   </modules>
 </project>

@@ -66,8 +66,8 @@ public class BatchConfiguration {
 		return new UtilisateurItemProcessor(sender);
 	}
 	
-	//envoi le mail à 17h 53 minutes 1 seconde et s'exécute toutes les 3 minutes jusqu'à 18 heures
-	@Scheduled(cron = "1 31/3 17 * * ?")
+	//envoi le mail à 14h 34 chaque jour
+	@Scheduled(cron = "0 34 14 ? * *")
 	public void perform() throws Exception {
 
 		System.out.println("Job Started at :" + new Date());
@@ -87,14 +87,7 @@ public class BatchConfiguration {
 		MailBatchItemWriter writer = new MailBatchItemWriter();
 		return writer;
 	}
-	// end::readerwriterprocessor[]
-	
-	// tag::listener[]
 
- 
-    // end::listener[]
-    
- // tag::jobstep[]
     @Bean
     public Job importUserJob() {
         return jobBuilderFactory.get("importUserJob")
