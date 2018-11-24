@@ -24,12 +24,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>fr.khady</groupId>
-			<artifactId>wsBiblio</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<type>war</type>
-		</dependency>
 	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -74,17 +68,21 @@
 					</execution>
 				</executions>
 				<configuration>
-         <!-- 	The name of your generated source package -->
+				<!--  	The name of your generated source package  -->
 					<packageName>fr.khady.wsBiblioClient</packageName>
 					<wsdlUrls>
 						<wsdlUrl>
-							http://lfr003015:8080/wsBiblio/UtilisateurService?wsdl
+							http://lfr029238:8080/wsBiblio/UtilisateurService?wsdl
+						</wsdlUrl>
+							<wsdlUrl>
+							http://lfr029238:8080/wsBiblio/ReservationService?wsdl
 						</wsdlUrl>
 					</wsdlUrls>
 				</configuration>
 			</plugin>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5.1</version>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>

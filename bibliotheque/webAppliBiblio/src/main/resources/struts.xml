@@ -3,19 +3,18 @@
         "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
-<constant name="struts.ui.theme" value="bootstrap" />
+	<constant name="struts.ui.theme" value="bootstrap" />
 	<!-- ===== Package de configuration de base ===== -->
 	<package name="base" abstract="true" extends="struts-default">
 		<interceptors>
 			<interceptor name="auth"
 				class="fr.khady.webAppliBiblio.interceptor.AuthInterceptor" />
-
 			<interceptor-stack name="authenticatedStack">
 				<interceptor-ref name="auth" />
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
-		
+
 		<global-results>
 			<result name="error-forbidden" type="httpheader">
 				<param name="error">403</param>
@@ -41,12 +40,14 @@
 			<result name="success">views/inscription.jsp</result>
 		</action>
 		<action name="listeParTitre"
-			class="fr.khady.webAppliBiblio.action.GestionOuvrageAction" method="index">
+			class="fr.khady.webAppliBiblio.action.GestionOuvrageAction"
+			method="index">
 			<result name="success">views/ouvrage.jsp</result>
 		</action>
 
 		<action name="ouvrage"
-			class="fr.khady.webAppliBiblio.action.GestionOuvrageAction" method="index">
+			class="fr.khady.webAppliBiblio.action.GestionOuvrageAction"
+			method="index">
 			<!-- <interceptor-ref name="store"> -->
 			<!-- <param name="operationMode">STORE</param> -->
 			<!-- </interceptor-ref> -->
@@ -55,12 +56,14 @@
 			<result name="success">views/ouvrage.jsp</result>
 		</action>
 		<action name="recherch"
-			class="fr.khady.webAppliBiblio.action.GestionOuvrageAction" method="index">
+			class="fr.khady.webAppliBiblio.action.GestionOuvrageAction"
+			method="index">
 			<result name="success">views/recherche.jsp</result>
 		</action>
 
 		<action name="detailsOuvrage"
-			class="fr.khady.webAppliBiblio.action.GestionOuvrageAction" method="doDetail">
+			class="fr.khady.webAppliBiblio.action.GestionOuvrageAction"
+			method="doDetail">
 			<result name="input">views/detailsOuvrage.jsp</result>
 			<result name="success">views/detailsOuvrage.jsp</result>
 		</action>
@@ -92,7 +95,8 @@
 		</action>
 
 		<action name="doSearch"
-			class="fr.khady.webAppliBiblio.action.GestionOuvrageAction" method="doSearch">
+			class="fr.khady.webAppliBiblio.action.GestionOuvrageAction"
+			method="doSearch">
 
 			<result name="input">views/ouvrage.jsp</result>
 			<result name="success">views/ouvrage.jsp
@@ -116,24 +120,47 @@
 			<result type="redirectAction">index</result>
 		</action>
 
-		<action name="pret" class="fr.khady.webAppliBiblio.action.GestionPretAction"
-			method="index">
-			<result name="success">views/pret.jsp</result>
-		</action>
-		<action name="prolonger" class="fr.khady.webAppliBiblio.action.GestionPretAction"
+<!-- 		<action name="pret" -->
+<!-- 			class="fr.khady.webAppliBiblio.action.GestionPretAction" -->
+<!-- 			method="index"> -->
+<!-- 			<result name="success">views/pret.jsp</result> -->
+<!-- 		</action> -->
+		<action name="prolonger"
+			class="fr.khady.webAppliBiblio.action.GestionPretAction"
 			method="prolonger">
 			<result name="input">views/pret.jsp</result>
 			<result name="success">views/pret.jsp</result>
 		</action>
-
+	
+		<action name="reserver"
+			class="fr.khady.webAppliBiblio.action.GestionReservationAction"
+			method="reserver">
+			<result name="input">views/ouvrage.jsp</result>
+			<result name="success">views/reservation.jsp</result>
+		</action>
+		
+		<action name="listerResa"
+			class="fr.khady.webAppliBiblio.action.GestionReservationAction"
+			method="listResa">
+			<result name="success">views/reservation.jsp</result>
+		</action>
+		
+		<action name="annuler"
+			class="fr.khady.webAppliBiblio.action.GestionReservationAction"
+			method="annuler">
+			<result name="input">views/reservation.jsp</result>
+			<result name="success">views/reservation.jsp</result>
+		</action>
 	</package>
 
 	<!-- ===== Package pour les actions privées ===== -->
 	<package name="private" extends="base">
-		<default-interceptor-ref name="authenticatedStack" />
-<!-- 		<action name="pret" class="fr.khady.webAppliBiblio.action.GestionPretAction" -->
-<!-- 		method="index"> -->
-<!-- 		<result name="success">views/pret.jsp</result> -->
-<!-- 		</action> -->
+		<default-interceptor-ref
+			name="authenticatedStack" />
+	
+		<action name="pret" class="fr.khady.webAppliBiblio.action.GestionPretAction"
+		method="index">
+		<result name="success">views/pret.jsp</result>
+		</action>
 	</package>
 </struts>

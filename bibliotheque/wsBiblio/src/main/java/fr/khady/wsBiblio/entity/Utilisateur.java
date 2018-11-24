@@ -1,12 +1,15 @@
 package fr.khady.wsBiblio.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,6 +28,8 @@ public class Utilisateur implements Serializable {
 	private String login;
 	private String password;
 	private String photo;
+//	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST) 
+//	private List<Reservation> reservations; 
 
 	public Utilisateur() {
 	}
@@ -108,5 +113,20 @@ public class Utilisateur implements Serializable {
 	public String toString() {
 		return String.format("Utilisateur[id=%d, nom='%s', prenom='%s']", idUser, nom, prenom);
 	}
-
+//
+//	public List<Reservation> getReservations() {
+//		return reservations;
+//	}
+//
+//	public void setReservations(List<Reservation> reservations) {
+//		this.reservations = reservations;
+//	}
+//	
+//	public void addRservation(Reservation reservation) {
+//		this.reservations.add(reservation);
+//	}
+//
+//	public void removeReservation(Reservation reservation) {
+//		this.reservations.remove(reservation);
+//	}
 }

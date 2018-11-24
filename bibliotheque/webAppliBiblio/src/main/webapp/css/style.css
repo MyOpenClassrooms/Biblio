@@ -61,6 +61,7 @@ fieldset {
     background-color: #f6f5f5;
     border-color: #f6f5f5;
 }
+ul.nav li.dropdown:hover ul.dropdown-menu { display: block; }
 .navbar-default .navbar-nav>li>a {
     color: #555;
 }

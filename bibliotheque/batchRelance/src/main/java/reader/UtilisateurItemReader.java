@@ -1,4 +1,4 @@
-package fr.khady.batchRelance;
+package reader;
 
 import java.util.List;
 

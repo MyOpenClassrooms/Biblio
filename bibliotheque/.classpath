@@ -25,9 +25,9 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="C:/Users/khabar/Downloads/struts2-core-2.1.8.jar/struts2-core-2.1.8.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 8.0/lib/servlet-api.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/khabar/Downloads/struts2-bootstrap-plugin-2.5.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/khabar/Downloads/jar_files/struts2-jquery-plugin-4.0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Khabar/Downloads/struts2-core-2.1.8.jar/struts2-core-2.1.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Khabar/Downloads/struts2-bootstrap-plugin-2.5.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Khabar/Downloads/jar_files/struts2-jquery-plugin-4.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Khabar/Downloads/glassfish-5.0/glassfish5/glassfish/modules/javax.servlet-api.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

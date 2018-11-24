@@ -70,7 +70,6 @@ public class OuvrageDao {
 	}
 
 	public Ouvrage trouverOuvrageParId(long idExemp) {
-
 		Ouvrage ouvrage = entityManager.find(Ouvrage.class, idExemp);
 		return ouvrage;
 	}
@@ -128,7 +127,6 @@ public class OuvrageDao {
 	
 
 	public Ouvrage trouverOuvrageParCategorie(long idCat) {
-
 		Ouvrage ouvrage = entityManager.find(Ouvrage.class, idCat);
 		return ouvrage;
 	}

@@ -2,13 +2,16 @@ package fr.khady.wsBiblio.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -33,7 +36,11 @@ public class Ouvrage implements Serializable {
 	private Categorie categorie;
 	@JoinColumn(name = "id_aut")
 	private Auteur auteur;
-	
+	@Column(name = "nbr_exep_libre")
+	private Integer nombreExplLibre;
+//	@OneToMany(mappedBy = "ouvrage", cascade = CascadeType.PERSIST) 
+//	private List<Reservation> reservations; 
+
 	public Ouvrage() {}
 
 
@@ -132,20 +139,24 @@ public class Ouvrage implements Serializable {
 		this.categorie = categorie;
 	}
 
-
-
 	public Auteur getAuteur() {
 		return auteur;
 	}
-
 
 
 	public void setAuteur(Auteur auteur) {
 		this.auteur = auteur;
 	}
 
-	
-	
-	
+
+//	public List<Reservation> getReservations() {
+//		return reservations;
+//	}
+//
+//
+//	public void setReservations(List<Reservation> reservations) {
+//		this.reservations = reservations;
+//	}
+
 	
 }

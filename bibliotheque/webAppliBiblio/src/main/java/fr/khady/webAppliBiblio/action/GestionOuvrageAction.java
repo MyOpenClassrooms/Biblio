@@ -1,6 +1,10 @@
 package fr.khady.webAppliBiblio.action;
 
 import java.util.List;
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
+import org.jasypt.util.password.StrongPasswordEncryptor;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -12,8 +16,9 @@ import fr.khady.wsBiblioClient.ExemplaireService_Service;
 import fr.khady.wsBiblioClient.Ouvrage;
 import fr.khady.wsBiblioClient.OuvrageService;
 import fr.khady.wsBiblioClient.OuvrageService_Service;
+import fr.khady.wsBiblioClient.Utilisateur;
 
-public class GestionOuvrageAction extends ActionSupport {
+public class GestionOuvrageAction extends ActionSupport{
 
 	private static final long serialVersionUID = -4423447871500036097L;
 
@@ -25,6 +30,7 @@ public class GestionOuvrageAction extends ActionSupport {
 	public Ouvrage ouvrage = new Ouvrage();
 	public Auteur auteur = new Auteur();
 	public Exemplaire exemplaire = new Exemplaire();
+	public Utilisateur utilisateur = new Utilisateur();
 	public List<Ouvrage> ouvrages;
 	OuvrageService_Service service = new OuvrageService_Service();
 	OuvrageService ouvragePort = service.getOuvrageServicePort();
@@ -36,7 +42,7 @@ public class GestionOuvrageAction extends ActionSupport {
 		titre = ouvrage.getTitre();
 		isbn = ouvrage.getIsbn();
 		nomAuteur = auteur.getNom();
-//		dispo = ouvrage.isDisponibilite();
+		dispo = ouvrage.isDisponibilite();
 		
 		System.out.println("dispo " + dispo);
 		ouvrages = ouvragePort.listerOuvrage();
@@ -52,8 +58,6 @@ public class GestionOuvrageAction extends ActionSupport {
 			}
 		}
 		
-			
-
 		return SUCCESS;
 	}
 
@@ -74,6 +78,7 @@ public class GestionOuvrageAction extends ActionSupport {
 		return SUCCESS;
 	}
 
+	
 //	public String listeParTitre() {
 //		// String vResult = ActionSupport.INPUT;
 //		titre = ouvrage.getTitre();
@@ -89,4 +94,6 @@ public class GestionOuvrageAction extends ActionSupport {
 //		}
 //		return SUCCESS;
 //	}
+	
+	
 }

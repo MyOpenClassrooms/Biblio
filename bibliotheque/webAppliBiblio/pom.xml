@@ -7,9 +7,7 @@
 		<groupId>fr.khady</groupId>
 		<version>1.0.0-BUILD-SNAPSHOT</version>
 	</parent>
-	<groupId>fr.khady</groupId>
 	<artifactId>webAppliBiblio</artifactId>
-	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>webAppliBiblio</name>
 
@@ -37,14 +35,12 @@
 		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-core</artifactId>
-			<version>${struts2.version}</version>
-		</dependency>
+			</dependency>
 
 		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-config-browser-plugin</artifactId>
-			<version>${struts2.version}</version>
-		</dependency>
+			</dependency>
 		<dependency>
 			<groupId>com.jgeppert.struts2.bootstrap</groupId>
 			<artifactId>struts2-bootstrap-plugin</artifactId>
@@ -59,14 +55,12 @@
 		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-junit-plugin</artifactId>
-			<version>${struts2.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -108,22 +102,25 @@
 					<packageName>fr.khady.wsBiblioClient</packageName>
 					<wsdlUrls>
 						<wsdlUrl>
-							http://lfr003015:8080/wsBiblio/UtilisateurService?wsdl
+							http://lfr029238:8080/wsBiblio/UtilisateurService?wsdl
 						</wsdlUrl>
 						<wsdlUrl>
-							http://lfr003015:8080/wsBiblio/OuvrageService?wsdl
+							http://lfr029238:8080/wsBiblio/OuvrageService?wsdl
 						</wsdlUrl>
 						<wsdlUrl>
-							http://lfr003015:8080/wsBiblio/PretService?wsdl
+							http://lfr029238:8080/wsBiblio/PretService?wsdl
 						</wsdlUrl>
 						<wsdlUrl>
-							http://lfr003015:8080/wsBiblio/AuteurService?wsdl
+							http://lfr029238:8080/wsBiblio/AuteurService?wsdl
 						</wsdlUrl>
 						<wsdlUrl>
-							http://lfr003015:8080/wsBiblio/ExemplaireService?wsdl
+							http://lfr029238:8080/wsBiblio/ExemplaireService?wsdl
 						</wsdlUrl>
 						<wsdlUrl>
-							http://lfr003015:8080/wsBiblio/CategorieService?wsdl
+							http://lfr029238:8080/wsBiblio/CategorieService?wsdl
+						</wsdlUrl>
+						<wsdlUrl>
+							http://lfr029238:8080/wsBiblio/ReservationService?wsdl
 						</wsdlUrl>
 					</wsdlUrls>
 				</configuration>

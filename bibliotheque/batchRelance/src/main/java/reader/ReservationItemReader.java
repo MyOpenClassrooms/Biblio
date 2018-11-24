@@ -1,8 +1,12 @@
-package fr.khady.batchRelance;
+package reader;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import org.springframework.batch.item.ItemReader;
+import org.springframework.batch.item.ParseException;
+import org.springframework.batch.item.UnexpectedInputException;
 
 import fr.khady.wsBiblioClient.Reservation;
 import fr.khady.wsBiblioClient.ReservationService;
@@ -10,30 +14,32 @@ import fr.khady.wsBiblioClient.ReservationService_Service;
 import fr.khady.wsBiblioClient.UtilisateurService;
 import fr.khady.wsBiblioClient.UtilisateurService_Service;
 
-public class UtilisateurClient {
-	public static void main(String[] args) {
+public class ReservationItemReader implements ItemReader<String> {
 
-		UtilisateurService_Service service = new UtilisateurService_Service();
-		UtilisateurService port = service.getUtilisateurServicePort();
-		
+	
+	private List<String> emailList = new ArrayList<String>();
+	private int emailCount = 0;
+
+	public  String read() throws Exception, UnexpectedInputException, ParseException{
+
 		ReservationService_Service serviceResa = new ReservationService_Service();
 		ReservationService portResa = serviceResa.getReservationServicePort();
 		
-	    ArrayList<String> userEmails = new ArrayList<String>();
-
-		List<String> emails = port.listerUtilisateurRelance();
-//		for (int i = 0; i < emails.size(); i++) {
-//			System.out.println(emails.get(i));
-//		}
 		List<Reservation> reservations = portResa.listerResevation();
 		for (Reservation reservation : reservations) {
 			
 			if(reservation.getOuvrage().isDisponibilite() == true && reservation.getPosition() == 1 && (reservation.getDateRetourPlusProche().toGregorianCalendar().getTime().compareTo(new Date()) < 0) ) {
-				userEmails.add(reservation.getUser().getEmail());
+				emailList.add(reservation.getUser().getEmail());
 			}
-		}
-		System.out.println(userEmails);
-		
+	
 	}
+		String nextEmail = null;
+		if (emailCount < emailList.size()) {
 
+			nextEmail =  emailList.get(emailCount);
+			emailCount++;
+
+		} 
+		return  nextEmail;
+	}
 }

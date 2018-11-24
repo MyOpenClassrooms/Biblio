@@ -26,8 +26,9 @@
 		<attributes>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/khabar/Desktop/postgresql-42.1.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Khabar/Downloads/Biblio-917a1dfdeb7788b112504d6ffde8592be18048a7/Biblio-917a1dfdeb7788b112504d6ffde8592be18048a7/bibliotheque/webServices/src/main/webapp/WEB-INF/lib/postgresql-42.1.4.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

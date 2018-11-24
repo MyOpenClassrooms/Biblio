@@ -31,6 +31,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.Scheduled;
 
+import processor.ReservationItemProcessor;
+import processor.UtilisateurItemProcessor;
+import reader.ReservationItemReader;
+import reader.UtilisateurItemReader;
+
 @Configuration
 @EnableBatchProcessing
 @Import({BatchScheduler.class})
@@ -55,19 +60,28 @@ public class BatchConfiguration {
 	// tag::readerwriterprocessor[]
 
 	@Bean
-	public org.springframework.batch.item.ItemReader<String> reader() {
-	
+	public org.springframework.batch.item.ItemReader<String> readerUser() {
 		return new UtilisateurItemReader();
 	}
 	
+	@Bean
+	public org.springframework.batch.item.ItemReader<String> readerResa() {
+		return new ReservationItemReader();
+	}
 	
 	@Bean
-	public UtilisateurItemProcessor processor() {
+	public UtilisateurItemProcessor processorUser() {
 		return new UtilisateurItemProcessor(sender);
 	}
 	
+	@Bean
+	public ReservationItemProcessor processorResa() {
+		return new ReservationItemProcessor(sender);
+	}
+	
+	
 	//envoi le mail à 14h 34 chaque jour
-	@Scheduled(cron = "0 34 14 ? * *")
+	@Scheduled(cron = "0 19		 11 ? * *")
 	public void perform() throws Exception {
 
 		System.out.println("Job Started at :" + new Date());
@@ -75,7 +89,7 @@ public class BatchConfiguration {
 		JobParameters param = new JobParametersBuilder().addString("JobID", String.valueOf(System.currentTimeMillis()))
 				.toJobParameters();
 
-		org.springframework.batch.core.JobExecution execution = jobLauncher.run(importUserJob(), param);
+		org.springframework.batch.core.JobExecution execution = jobLauncher.run(importResaJob(), param);
 
 		System.out.println("Job finished with status :" + execution.getStatus());
 	}
@@ -88,22 +102,43 @@ public class BatchConfiguration {
 		return writer;
 	}
 
+//    @Bean
+//    public Job importUserJob() {
+//        return jobBuilderFactory.get("importUserJob")
+//                .incrementer(new RunIdIncrementer())
+//                .flow(step1())
+//                .end()
+//                .build();
+//    }
+//    
+//
+//    @Bean
+//    public Step step1() {
+//        return stepBuilderFactory.get("step1")
+//                .<String, MimeMessage> chunk(10)
+//                .reader(readerUser())
+//                .processor(processorUser())
+//                .writer(writer())
+//                .build();
+//    }
+    // end::jobstep[]
+    
     @Bean
-    public Job importUserJob() {
-        return jobBuilderFactory.get("importUserJob")
+    public Job importResaJob() {
+        return jobBuilderFactory.get("importResaJob")
                 .incrementer(new RunIdIncrementer())
-                .flow(step1())
+                .flow(stepR())
                 .end()
                 .build();
     }
     
 
     @Bean
-    public Step step1() {
-        return stepBuilderFactory.get("step1")
+    public Step stepR() {
+        return stepBuilderFactory.get("stepR")
                 .<String, MimeMessage> chunk(10)
-                .reader(reader())
-                .processor(processor())
+                .reader(readerResa())
+                .processor(processorResa())
                 .writer(writer())
                 .build();
     }
