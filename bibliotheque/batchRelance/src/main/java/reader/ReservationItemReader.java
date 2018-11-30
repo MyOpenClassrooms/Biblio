@@ -26,6 +26,7 @@ public class ReservationItemReader implements ItemReader<String> {
 		ReservationService portResa = serviceResa.getReservationServicePort();
 		
 		List<Reservation> reservations = portResa.listerResevation();
+		if(!(reservations.isEmpty())) {
 		for (Reservation reservation : reservations) {
 			
 			if(reservation.getOuvrage().isDisponibilite() == true && reservation.getPosition() == 1 && (reservation.getDateRetourPlusProche().toGregorianCalendar().getTime().compareTo(new Date()) < 0) ) {
@@ -33,6 +34,7 @@ public class ReservationItemReader implements ItemReader<String> {
 			}
 	
 	}
+		}
 		String nextEmail = null;
 		if (emailCount < emailList.size()) {
 
@@ -40,6 +42,7 @@ public class ReservationItemReader implements ItemReader<String> {
 			emailCount++;
 
 		} 
+		
 		return  nextEmail;
 	}
 }

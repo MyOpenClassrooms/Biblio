@@ -105,6 +105,17 @@ public class PretService {
 		} else
 			throw new BibliothequeException("Aucun ouvrage trouvé pour le titre " + idUser, fault);
 	}
+	
+	@WebMethod
+	public List<Pret> trouverPretParUtilisateurExemp(@WebParam(name = "utilisateur") long idUser, @WebParam(name = "exemplaire") long idExemp) throws BibliothequeException {
+
+		BibliothequeFault fault = new BibliothequeFault();
+		List<Pret> prets = dao.trouverPretParUtilisateurExemplaire(idUser, idExemp);
+		if (prets != null) {
+			return prets;
+		} else
+			throw new BibliothequeException("Aucun pret trouvé pour l'utilisateur " + idUser, fault);
+	}
 
 	@WebMethod
 	public Pret trouverPretParExemplaire(@WebParam(name = "ouvrage") long idExemp) throws BibliothequeException {

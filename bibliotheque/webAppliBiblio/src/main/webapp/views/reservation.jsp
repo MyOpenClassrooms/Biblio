@@ -53,7 +53,6 @@
 									action="annuler" var="lienAnnulResa">
 									<s:param name="reservation.idResa" value="idResa" />
 									<s:param name="idOuvrage" value="ouvrage.idOuvrage" />
-									<s:param name="idUser" value="#session.utilisateur.idUser" />
 								</s:url> <s:a class='btn btn-info btn-xs' href="%{lienAnnulResa}">
 									<span class="glyphicon glyphicon-edit"></span>Annuler</s:a></td>
 						</tr>

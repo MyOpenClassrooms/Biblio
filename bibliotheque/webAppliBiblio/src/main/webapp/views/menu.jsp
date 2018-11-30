@@ -35,7 +35,7 @@
 <!-- 						<li class=""><a href="">Mes prêts</a></li> -->
 <!-- 					</ul></li> -->
 					<li><s:url namespace="/" action="pret" var="lienPret"></s:url>
-					<s:a href="%{lienPret}">Pret</s:a></li>
+					<s:a href="%{lienPret}">Pret </s:a></li>
 					</ul>
 				
 				<s:if test="#session.utilisateur">

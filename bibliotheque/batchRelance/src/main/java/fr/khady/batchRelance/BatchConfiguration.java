@@ -81,7 +81,7 @@ public class BatchConfiguration {
 	
 	
 	//envoi le mail à 14h 34 chaque jour
-	@Scheduled(cron = "0 19		 11 ? * *")
+//	@Scheduled(cron = "0 15 13 ? * *")
 	public void perform() throws Exception {
 
 		System.out.println("Job Started at :" + new Date());
@@ -127,15 +127,15 @@ public class BatchConfiguration {
     public Job importResaJob() {
         return jobBuilderFactory.get("importResaJob")
                 .incrementer(new RunIdIncrementer())
-                .flow(stepR())
+                .flow(step1())
                 .end()
                 .build();
     }
     
 
     @Bean
-    public Step stepR() {
-        return stepBuilderFactory.get("stepR")
+    public Step step1() {
+        return stepBuilderFactory.get("step1")
                 .<String, MimeMessage> chunk(10)
                 .reader(readerResa())
                 .processor(processorResa())

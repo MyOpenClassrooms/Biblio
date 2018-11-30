@@ -16,9 +16,10 @@
 		</interceptors>
 
 		<global-results>
-			<result name="error-forbidden" type="httpheader">
-				<param name="error">403</param>
-			</result>
+			<!-- <result name="error-forbidden" type="httpheader"> -->
+			<!-- <param name="error">403</param> -->
+			<!-- </result> -->
+			<result name="login" type="redirect">/connexion.action</result>
 		</global-results>
 
 	</package>
@@ -29,7 +30,6 @@
 		<action name="index">
 			<result>views/index.jsp</result>
 		</action>
-
 		<action name="inscription"
 			class="fr.khady.webAppliBiblio.action.GestionUtilisateurAction"
 			method="index">
@@ -120,32 +120,15 @@
 			<result type="redirectAction">index</result>
 		</action>
 
-<!-- 		<action name="pret" -->
-<!-- 			class="fr.khady.webAppliBiblio.action.GestionPretAction" -->
-<!-- 			method="index"> -->
-<!-- 			<result name="success">views/pret.jsp</result> -->
-<!-- 		</action> -->
-		<action name="prolonger"
-			class="fr.khady.webAppliBiblio.action.GestionPretAction"
-			method="prolonger">
-			<result name="input">views/pret.jsp</result>
-			<result name="success">views/pret.jsp</result>
-		</action>
+		<!-- <action name="pret" -->
+		<!-- class="fr.khady.webAppliBiblio.action.GestionPretAction" -->
+		<!-- method="index"> -->
+		<!-- <result name="success">views/pret.jsp</result> -->
+		<!-- </action> -->
 	
-		<action name="reserver"
-			class="fr.khady.webAppliBiblio.action.GestionReservationAction"
-			method="reserver">
-			<result name="input">views/ouvrage.jsp</result>
-			<result name="success">views/reservation.jsp</result>
-		</action>
-		
-		<action name="listerResa"
-			class="fr.khady.webAppliBiblio.action.GestionReservationAction"
-			method="listResa">
-			<result name="success">views/reservation.jsp</result>
-		</action>
-		
-		<action name="annuler"
+
+
+<action name="annuler"
 			class="fr.khady.webAppliBiblio.action.GestionReservationAction"
 			method="annuler">
 			<result name="input">views/reservation.jsp</result>
@@ -154,13 +137,34 @@
 	</package>
 
 	<!-- ===== Package pour les actions privées ===== -->
-	<package name="private" extends="base">
+	<package name="private" namespace="/" extends="base">
 		<default-interceptor-ref
 			name="authenticatedStack" />
-	
-		<action name="pret" class="fr.khady.webAppliBiblio.action.GestionPretAction"
-		method="index">
-		<result name="success">views/pret.jsp</result>
+
+		<action name="pret"
+			class="fr.khady.webAppliBiblio.action.GestionPretAction"
+			method="index">
+			<result name="success">views/pret.jsp</result>
+		</action>
+		
+			<action name="prolonger"
+			class="fr.khady.webAppliBiblio.action.GestionPretAction"
+			method="prolonger">
+			<result name="input">views/pret.jsp</result>
+			<result name="success">views/pret.jsp</result>
+		</action>
+		
+				<action name="reserver"
+			class="fr.khady.webAppliBiblio.action.GestionReservationAction"
+			method="reserver">
+			<result name="input">views/ouvrage.jsp</result>
+			<result name="success">views/reservation.jsp</result>
+		</action>
+
+		<action name="listerResa"
+			class="fr.khady.webAppliBiblio.action.GestionReservationAction"
+			method="listResa">
+			<result name="success">views/reservation.jsp</result>
 		</action>
 	</package>
 </struts>

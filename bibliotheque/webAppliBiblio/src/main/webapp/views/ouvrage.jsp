@@ -10,7 +10,16 @@
 				</h4>
 			</div>
 			<div class="panel-body">
-
+				<s:if test="hasActionErrors()">
+					<div class="errors">
+						<s:actionerror />
+					</div>
+				</s:if>
+				<s:if test="hasActionMessages()">
+					<div class="welcome">
+						<s:actionmessage />
+					</div>
+				</s:if>
 				<s:form action="ouvrage" method="post" theme="simple"
 					cssClass="well form-inline">
 					<s:textfield placeholder="Titre" name="ouvrage.titre"
@@ -21,15 +30,21 @@
 						class="form-control" />
 					<s:textfield placeholder="Isbn" name="ouvrage.isbn"
 						class="form-control" />
-					<s:select class="form-control"
-						list="#{'true':'Diponible', 'false':'Indisponible'}"
-						headerKey="-1" headerValue="Choisir la disponibilité"
-						name="ouvrage.disponibilite" value="ouvrage.disponibilite" />
+<%-- 					<s:select class="form-control" --%>
+<%-- 						list="#{'true':'Diponible', 'false':'Indisponible'}" --%>
+<%-- 						headerKey="-1" headerValue="Choisir la disponibilité" --%>
+<%-- 						name="ouvrage.disponibilite" value="null" /> --%>
+					<s:radio class="radio-inline" name="ouvrage.disponibilite" 
+						list="#{'true' : 'Diponible'}" />
+					<s:radio class="radio-inline" name="ouvrage.disponibilite" 
+						list="#{ 'false' : 'Indisponible'}" />
 					<s:submit value="Rechercher" cssClass="btn btn-primary" />
+					
 
 				</s:form>
+<%-- 				<s:submit value="Rafléchir" cssClass="btn btn-primary" /> --%>
 				<div class="tab-pane active" id="tab1" role="tabpanel">
-					<s:actionmessage />
+					<%-- 					<s:actionmessage /> --%>
 
 					<s:iterator value="ouvrages">
 
@@ -55,11 +70,11 @@
 										</s:url>
 										<s:if test="%{disponibilite==false}">
 											<s:a class="btn btn-primary left" role="button"
-											href="%{lienResa}">Réserver</s:a>
-										</s:if> 
-									
-										
-											
+												href="%{lienResa}">Réserver</s:a>
+										</s:if>
+
+
+
 									</p>
 								</div>
 							</div>

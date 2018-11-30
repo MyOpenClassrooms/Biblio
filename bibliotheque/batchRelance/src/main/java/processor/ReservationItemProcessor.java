@@ -31,12 +31,11 @@ public class ReservationItemProcessor implements ItemProcessor<String, MimeMessa
 
 	@Autowired
 	private JavaMailSender mailSender;
-	
+
 	@Autowired
 	private VelocityEngine engine;
 	private String sender;
 
-	
 	public ReservationItemProcessor(String sender) {
 		this.sender = sender;
 	}
@@ -46,33 +45,35 @@ public class ReservationItemProcessor implements ItemProcessor<String, MimeMessa
 	public MimeMessage process(String string) throws Exception {
 		MimeMessage message = mailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(message, true);
-		
+
 		helper.setFrom(sender);
-		
+
 		Utilisateur utilisateur = new Utilisateur();
 		ReservationService_Service serviceResa = new ReservationService_Service();
 		ReservationService portResa = serviceResa.getReservationServicePort();
 
 		List<Reservation> reservations = portResa.listerResevation();
-		for (Reservation reservation : reservations) {
-			if(reservation.getOuvrage().isDisponibilite() == true && reservation.getPosition() == 1 && (reservation.getDateRetourPlusProche().toGregorianCalendar().getTime().compareTo(new Date()) < 0) ) {
-				utilisateur = reservation.getUser();
+		if (!(reservations.isEmpty())) {
+			for (Reservation reservation : reservations) {
+				if (reservation.getOuvrage().isDisponibilite() == true && reservation.getPosition() == 1 && (reservation
+						.getDateRetourPlusProche().toGregorianCalendar().getTime().compareTo(new Date()) < 0)) {
+					utilisateur = reservation.getUser();
+				
+				}
+				
 			}
-		
+		}
+		if (utilisateur != null) {
 			helper.setTo(utilisateur.getEmail());
-		
-		
-//		helper.setCc(sender);
-		helper.setSubject(VelocityEngineUtils.mergeTemplateIntoString(engine, "email-subject.vm", "UTF-8", null));
-		helper.setText(VelocityEngineUtils.mergeTemplateIntoString(engine, "email-body.vm", "UTF-8", null));
-		
-		
-		log.info("Preparing message for: " + utilisateur.getEmail());
-		
+
+			helper.setCc(sender);
+			helper.setSubject(
+					VelocityEngineUtils.mergeTemplateIntoString(engine, "email-subject.vm", "UTF-8", null));
+			helper.setText(VelocityEngineUtils.mergeTemplateIntoString(engine, "email-body.vm", "UTF-8", null));
+
+			log.info("Preparing message for: " + utilisateur.getEmail());
 		}
 		return message;
 	}
 
-
-	
 }

@@ -57,7 +57,9 @@ public class GestionOuvrageAction extends ActionSupport{
 				this.addActionMessage("AUCUN OUVRAGE");
 			}
 		}
-		
+		if (ouvrages.isEmpty()) {
+			this.addActionMessage("Aucun ouvrage");
+		}
 		return SUCCESS;
 	}
 

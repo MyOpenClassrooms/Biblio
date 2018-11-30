@@ -66,7 +66,6 @@ public class ReservationDao {
 		}
 		
 		reservation.setPosition(position);
-		
 		try {
 		   entityManager.persist(reservation);
 		

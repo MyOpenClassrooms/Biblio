@@ -86,3 +86,19 @@ button, html input[type=button], input[type=reset], input[type=submit] {
     box-shadow: 3px 3px 0px transparent;
     transition: 0.5s;
     }
+    .errors {
+	background-color:#FFCCCC;
+.errors li{ 
+	list-style: none; 
+}
+.welcome {
+	background-color:#DDFFDD;
+}
+.welcome li{ 
+	list-style: none; 
+}
+.checkbox-inline, .radio-inline {
+    position: relative;
+    display: inline-block;
+    padding-left: 0px !important; 
+}

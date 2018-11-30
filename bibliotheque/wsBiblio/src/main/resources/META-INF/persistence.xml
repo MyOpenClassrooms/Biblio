@@ -11,6 +11,7 @@
         <class>fr.khady.wsBiblio.entity.Exemplaire</class>
         <class>fr.khady.wsBiblio.entity.Ouvrage</class>
         <class>fr.khady.wsBiblio.entity.Pret</class>
+         <class>fr.khady.wsBiblio.entity.Reservation</class>
         <properties/>		
     </persistence-unit>   
 </persistence>

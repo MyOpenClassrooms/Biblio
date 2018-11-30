@@ -23,7 +23,9 @@ public class PretDao {
 	private static final String JPQL_UPDATE = "UPDATE pret  SET date_retour = date_retour + (28 || 'day')::interval "
 			+ "WHERE date_retour=?1";
 	private static final String JPQL_SELECT_PAR_UTILISATEUR = "SELECT p FROM Pret p WHERE p.user.idUser=:iduser";
+	private static final String JPQL_SELECT_PAR_UTILISATEUR_EXEMP = "SELECT p FROM Pret p WHERE p.user.idUser=:iduser AND p.exemplaire.idExemp = :idExemp";
 	private static final String PARAM_ID_USER = "iduser";
+	private static final String PARAM_ID_EXEMP = "idExemp";
 	private static final String JPQL_SELECT_PAR_DATE_RETOUR = "SELECT p FROM Pret p WHERE p.dateRetourPrevu=:dateRetour";
 	private static final String PARAM_DATE_RETOUR = "dateRetour";
 	
@@ -123,6 +125,18 @@ public class PretDao {
 			public List<Pret> trouverPretParUtilisateur(long idUser) throws DaoException {
 				Query req = entityManager.createQuery(JPQL_SELECT_PAR_UTILISATEUR);
 				req.setParameter(PARAM_ID_USER, idUser);
+				try {
+					return req.getResultList();
+				} catch (Exception e) {
+					throw new DaoException(e);
+				}
+		  }
+	  
+	  @SuppressWarnings("unchecked")
+			public List<Pret> trouverPretParUtilisateurExemplaire(long idUser, long idExemp) throws DaoException {
+				Query req = entityManager.createQuery(JPQL_SELECT_PAR_UTILISATEUR_EXEMP);
+				req.setParameter(PARAM_ID_USER, idUser);
+				req.setParameter(PARAM_ID_EXEMP, idExemp);
 				try {
 					return req.getResultList();
 				} catch (Exception e) {
