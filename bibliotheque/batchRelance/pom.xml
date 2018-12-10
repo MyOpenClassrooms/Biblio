@@ -77,6 +77,12 @@
 							<wsdlUrl>
 							http://lfr029238:8080/wsBiblio/ReservationService?wsdl
 						</wsdlUrl>
+							<wsdlUrl>
+							http://lfr029238:8080/wsBiblio/PretService?wsdl
+						</wsdlUrl>
+								<wsdlUrl>
+							http://lfr029238:8080/wsBiblio/ExemplaireService?wsdl
+						</wsdlUrl>
 					</wsdlUrls>
 				</configuration>
 			</plugin>

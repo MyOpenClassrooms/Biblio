@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="taglib.jsp"%>
 <body>
 
@@ -6,7 +7,7 @@
 		<div class="panel panel-default centre">
 			<div class="panel-heading">
 				<h4>
-					<b>La liste des réservations</b>
+					<b>La liste des rÃ©servations</b>
 				</h4>
 			</div>
 			<div class="panel-body">
@@ -15,7 +16,7 @@
 				<table class="table table-striped custab">
 					<thead>
 						<tr>
-							<th>ID du réservation</th>
+							<th>ID du rÃ©servation</th>
 							<th>Ouvrage</th>
 							<th>Date retour plus proche</th>
 							<th>Position</th>
@@ -36,7 +37,7 @@
 							
  							<td>
  							<s:if test="%{dateRetourPlusProche==null}">
-											Non déterminée
+											Non dÃ©terminÃ©e
 										</s:if> 
 										<s:else>
 										    <s:date name="dateRetourPlusProche.toGregorianCalendar()" format="dd-MM-yyyy" />

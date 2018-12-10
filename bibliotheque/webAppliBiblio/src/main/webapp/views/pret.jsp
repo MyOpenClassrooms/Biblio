@@ -10,8 +10,16 @@
 				</h4>
 			</div>
 			<div class="panel-body">
-				<s:actionerror />
-			<s:actionmessage/>
+				<s:if test="hasActionErrors()">
+					<div class="errors">
+						<s:actionerror />
+					</div>
+				</s:if>
+				<s:if test="hasActionMessages()">
+					<div class="welcome">
+						<s:actionmessage />
+					</div>
+				</s:if>
 				<table class="table table-striped custab">
 					<thead>
 <!-- 						<a href="#" class="btn btn-primary btn-xs pull-right"><b>+</b> -->

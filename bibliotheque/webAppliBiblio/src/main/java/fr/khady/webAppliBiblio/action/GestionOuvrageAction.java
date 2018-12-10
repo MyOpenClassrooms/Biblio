@@ -1,7 +1,13 @@
 package fr.khady.webAppliBiblio.action;
 
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
+
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.apache.struts2.interceptor.SessionAware;
 import org.jasypt.util.password.StrongPasswordEncryptor;
@@ -16,9 +22,12 @@ import fr.khady.wsBiblioClient.ExemplaireService_Service;
 import fr.khady.wsBiblioClient.Ouvrage;
 import fr.khady.wsBiblioClient.OuvrageService;
 import fr.khady.wsBiblioClient.OuvrageService_Service;
+import fr.khady.wsBiblioClient.Reservation;
+import fr.khady.wsBiblioClient.ReservationService;
+import fr.khady.wsBiblioClient.ReservationService_Service;
 import fr.khady.wsBiblioClient.Utilisateur;
 
-public class GestionOuvrageAction extends ActionSupport{
+public class GestionOuvrageAction extends ActionSupport {
 
 	private static final long serialVersionUID = -4423447871500036097L;
 
@@ -32,24 +41,31 @@ public class GestionOuvrageAction extends ActionSupport{
 	public Exemplaire exemplaire = new Exemplaire();
 	public Utilisateur utilisateur = new Utilisateur();
 	public List<Ouvrage> ouvrages;
+//	private Date dateRetourPrevu;
+	XMLGregorianCalendar dateRetourPrevu;
+
 	OuvrageService_Service service = new OuvrageService_Service();
 	OuvrageService ouvragePort = service.getOuvrageServicePort();
-	
+
 	ExemplaireService_Service serviceEx = new ExemplaireService_Service();
 	ExemplaireService exemplairePort = serviceEx.getExemplaireServicePort();
+
+	ReservationService_Service serviceResa = new ReservationService_Service();
+	ReservationService reservationPort = serviceResa.getReservationServicePort();
+	public List<Reservation> reservations;
 
 	public String index() {
 		titre = ouvrage.getTitre();
 		isbn = ouvrage.getIsbn();
 		nomAuteur = auteur.getNom();
 		dispo = ouvrage.isDisponibilite();
-		
+
 		System.out.println("dispo " + dispo);
 		ouvrages = ouvragePort.listerOuvrage();
-		if (titre == null && isbn == null && nomAuteur == null && dispo == null ) {
+		if (titre == null && isbn == null && nomAuteur == null && dispo == null) {
 			ouvrages = ouvragePort.listerOuvrage();
 //			this.addActionMessage("AUCUN Result pour la recherche");
-		} else{
+		} else {
 			try {
 				ouvrages = ouvragePort.trouverOuvrageParIsbnTitreAuteur(isbn, titre, nomAuteur, dispo);
 
@@ -65,22 +81,39 @@ public class GestionOuvrageAction extends ActionSupport{
 
 	public String doDetail() {
 		idOuvrage = ouvrage.getIdOuvrage();
+
 		try {
 			ouvrage = ouvragePort.trouverOuvrageParId(idOuvrage);
-		} catch (BibliothequeException e) {
-			e.printStackTrace();
-		}
-		
-		try {
+			reservations = reservationPort.trouverReservationParOuvrage(ouvrage);
 			exemplaire = exemplairePort.trouverExemplaireParOuvrage(idOuvrage);
-			System.out.println("exem " + exemplaire);
+			dateRetourPrevu = reservationPort.dateRetourPrevu(idOuvrage);
 		} catch (BibliothequeException e) {
 			e.printStackTrace();
 		}
+	
 		return SUCCESS;
 	}
 
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+	}
+
+	public XMLGregorianCalendar getDateRetourPrevu() {
+		return dateRetourPrevu;
+	}
+
+	public void setDateRetourPrevu(XMLGregorianCalendar dateRetourPrevu) {
+		this.dateRetourPrevu = dateRetourPrevu;
+	}
+
 	
+
+
+
 //	public String listeParTitre() {
 //		// String vResult = ActionSupport.INPUT;
 //		titre = ouvrage.getTitre();
@@ -96,6 +129,5 @@ public class GestionOuvrageAction extends ActionSupport{
 //		}
 //		return SUCCESS;
 //	}
-	
-	
+
 }

@@ -20,7 +20,7 @@ public class PretDao {
 	@PersistenceContext(unitName = "bdd_biblio_PU")
 	private EntityManager entityManager;
 
-	private static final String JPQL_UPDATE = "UPDATE pret  SET date_retour = date_retour + (28 || 'day')::interval "
+	private static final String JPQL_UPDATE = "UPDATE pret  SET date_retour = date_retour + interval '28 day' "
 			+ "WHERE date_retour=?1";
 	private static final String JPQL_SELECT_PAR_UTILISATEUR = "SELECT p FROM Pret p WHERE p.user.idUser=:iduser";
 	private static final String JPQL_SELECT_PAR_UTILISATEUR_EXEMP = "SELECT p FROM Pret p WHERE p.user.idUser=:iduser AND p.exemplaire.idExemp = :idExemp";
@@ -89,11 +89,10 @@ public class PretDao {
 	
 
 	public int modifierPret(Date dateRetour) throws DaoException {
+		int executeUp;
 		Query requete = entityManager.createNativeQuery(JPQL_UPDATE);
-		int executeUp = requete.setParameter(1, dateRetour).executeUpdate();
-		System.out.println("executeupdate " + executeUp );
-		listerPret();
-		return executeUp;
+		requete.setParameter(1, dateRetour);
+		return requete.executeUpdate();
 
 	}
 

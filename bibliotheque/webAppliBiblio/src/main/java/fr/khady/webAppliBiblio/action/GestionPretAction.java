@@ -26,7 +26,8 @@ public class GestionPretAction extends ActionSupport implements SessionAware{
 	public List<Pret> prets;
 	public Date dateRetourPrevu;
 	Utilisateur utilisateur = new Utilisateur();
-	 private Map<String, Object> session;
+	private Map<String, Object> session;
+	 
 	PretService_Service service = new PretService_Service();
 	PretService pretPort = service.getPretServicePort();
 
@@ -50,36 +51,34 @@ public class GestionPretAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String prolonger() {
-
+		utilisateur = (Utilisateur) this.session.get("utilisateur");
 		// date_retour = pret.getDateRetourPrevu();
-
-		if (dateRetourPrevu != null) {
+		int executeUpdate = 0;
+		if (dateRetourPrevu != null && dateRetourPrevu.compareTo(new Date()) > 0) {
 			System.out.println(" dateRetour " + dateRetourPrevu);
 			GregorianCalendar calendar = new GregorianCalendar();
 			calendar.setTime(dateRetourPrevu);
-			XMLGregorianCalendar dateConverti;
+			XMLGregorianCalendar dateConverti = null;
 			try {
 				dateConverti = DatatypeFactory.newInstance().newXMLGregorianCalendar(calendar);
-				try {
-					// prets = pretPort.trouverPretParDateRetourPrevu(dateConverti);
-					System.out.println(" pret " + prets);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				System.out.println(" dateConverti " + dateConverti);
-				int executeUpdate = pretPort.modifierPret(dateConverti);
-
-				if (executeUpdate == 1) {
-					this.addActionMessage("Pret bien prolongé");
-				}
-				// pretPort.listerPret();
-
+				
 			} catch (DatatypeConfigurationException e) {
 				e.printStackTrace();
 			}
+				
+				executeUpdate = pretPort.modifierPret(dateConverti);
+				if (executeUpdate == 1) {
+				this.addActionMessage("Pret bien prolongé");
+			}
+		}else {
+			this.addActionError("Le pret ne peut pas être prolongé: la date butoire dépassée");
 		}
-
-		prets = pretPort.listerPret();
+		
+		try {
+		prets = pretPort.trouverPretParUtilisateur(utilisateur.getIdUser());
+	} catch (BibliothequeException e) {
+		e.printStackTrace();
+	}
 		return SUCCESS;
 	}
 

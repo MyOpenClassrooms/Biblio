@@ -6,7 +6,7 @@
 		<div class="panel panel-default centre">
 			<div class="panel-heading">
 				<h4>
-					<b>D�tail de l'ouvrage: "<s:property value="ouvrage.titre" />"
+					<b>Détail de l'ouvrage: "<s:property value="ouvrage.titre" />"
 					</b>
 				</h4>
 			</div>
@@ -20,26 +20,29 @@
 						<span class="para_text" style=""> Ecrit par <b><s:property
 									value="ouvrage.auteur.nom" /> <s:property
 									value="ouvrage.auteur.prenom" /></b> <br /> <br />
-									Resum� de l'ouvrage:
+									Resumé de l'ouvrage:
 							<b><p>
 									<s:property value="ouvrage.resume" />
 								</p> </b><br /> <br /> Nombre de pages: <b><s:property
 									value="ouvrage.nbrpage" />  </b> pages<br />
-									Date de parution: <b><s:date name="ouvrage.dateParution.toGregorianCalendar()" format="dd-MM-yyyy" /></b>
-									<br />
-									Disponiblit�: <b><s:if test="%{ouvrage.disponibilite==false}">
+									Disponiblité: <b><s:if test="%{ouvrage.disponibilite==false}">
 											Indisponible
 										</s:if> <s:else>
 										    Disponible
 										</s:else></b>
 									<br />
-									Cat�gorie: <b><s:property value="ouvrage.categorie.libelle" /></b><br />
-									Nombre d'exemplaire: <b><s:property value="exemplaire.nbrExemplaire" /></b>
-									
+									Catégorie: <b><s:property value="ouvrage.categorie.libelle" /></b><br />
+									Nombre d'exemplaire: <b><s:property value="exemplaire.nbrExemplaire" /></b><br />
+									<s:if test="%{ouvrage.disponibilite==false}">Le nombre de personnes ayant réservé l’ouvrage: <b><s:property value="reservations.size()" /></b><br />
+									Date de retour prévue: <b><s:date name="dateRetourPrevu.toGregorianCalendar()" format="dd-MM-yyyy" /></b></s:if>
 									<section style="margin-top: 75px">
 										<p>
 											<a href="<s:url value="/ouvrage"/>" class="btn btn-primary"
 												role="button">Retour</a>
+												<s:if test="%{ouvrage.disponibilite==false}">
+											<s:a class="btn btn-primary left" role="button"
+												href="%{lienResa}">Réserver</s:a>
+										</s:if>
 										</p>
 									</section>
 					</div>

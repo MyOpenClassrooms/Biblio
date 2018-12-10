@@ -1,6 +1,5 @@
 package fr.khady.batchRelance;
 
-
 import java.util.Date;
 import java.util.List;
 
@@ -31,6 +30,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.Scheduled;
 
+import fr.khady.wsBiblioClient.Utilisateur;
 import processor.ReservationItemProcessor;
 import processor.UtilisateurItemProcessor;
 import reader.ReservationItemReader;
@@ -38,19 +38,18 @@ import reader.UtilisateurItemReader;
 
 @Configuration
 @EnableBatchProcessing
-@Import({BatchScheduler.class})
+@Import({ BatchScheduler.class })
 public class BatchConfiguration {
 
 	@Autowired
 	public JobBuilderFactory jobBuilderFactory;
-	
 
 	@Autowired
 	public StepBuilderFactory stepBuilderFactory;
-	
+
 	@Autowired
 	private SimpleJobLauncher jobLauncher;
-	
+
 	@Value("${spring.mail.username}")
 	private String sender;
 
@@ -59,43 +58,41 @@ public class BatchConfiguration {
 
 	// tag::readerwriterprocessor[]
 
+//	@Bean
+//	public org.springframework.batch.item.ItemReader<String> readerUser() {
+//		return new UtilisateurItemReader();
+//	}
+
 	@Bean
-	public org.springframework.batch.item.ItemReader<String> readerUser() {
-		return new UtilisateurItemReader();
-	}
-	
-	@Bean
-	public org.springframework.batch.item.ItemReader<String> readerResa() {
+	public org.springframework.batch.item.ItemReader<Utilisateur> readerResa() {
 		return new ReservationItemReader();
 	}
-	
+
+//	@Bean
+//	public UtilisateurItemProcessor processorUser() {
+//		return new UtilisateurItemProcessor(sender);
+//	}
+
 	@Bean
-	public UtilisateurItemProcessor processorUser() {
-		return new UtilisateurItemProcessor(sender);
-	}
-	
-	@Bean
-	public ReservationItemProcessor processorResa() {
+	public ReservationItemProcessor processor() {
 		return new ReservationItemProcessor(sender);
 	}
-	
-	
-	//envoi le mail à 14h 34 chaque jour
-//	@Scheduled(cron = "0 15 13 ? * *")
+
+	// envoi le mail à 10mn
+	@Scheduled(cron = "0 0/2 * * * ?")
 	public void perform() throws Exception {
 
 		System.out.println("Job Started at :" + new Date());
 
 		JobParameters param = new JobParametersBuilder().addString("JobID", String.valueOf(System.currentTimeMillis()))
 				.toJobParameters();
+		if (processor() != null) {
+			org.springframework.batch.core.JobExecution execution = jobLauncher.run(importResaJob(), param); // boucle
 
-		org.springframework.batch.core.JobExecution execution = jobLauncher.run(importResaJob(), param);
-
-		System.out.println("Job finished with status :" + execution.getStatus());
+			System.out.println("Job finished with status :" + execution.getStatus());
+		}
 	}
-	
 
-	
 	@Bean
 	public MailBatchItemWriter writer() {
 		MailBatchItemWriter writer = new MailBatchItemWriter();
@@ -121,26 +118,17 @@ public class BatchConfiguration {
 //                .writer(writer())
 //                .build();
 //    }
-    // end::jobstep[]
-    
-    @Bean
-    public Job importResaJob() {
-        return jobBuilderFactory.get("importResaJob")
-                .incrementer(new RunIdIncrementer())
-                .flow(step1())
-                .end()
-                .build();
-    }
-    
+	// end::jobstep[]
 
-    @Bean
-    public Step step1() {
-        return stepBuilderFactory.get("step1")
-                .<String, MimeMessage> chunk(10)
-                .reader(readerResa())
-                .processor(processorResa())
-                .writer(writer())
-                .build();
-    }
-    // end::jobstep[]
+	@Bean
+	public Job importResaJob() {
+		return jobBuilderFactory.get("importResaJob").incrementer(new RunIdIncrementer()).flow(step1()).end().build();
+	}
+
+	@Bean
+	public Step step1() {
+		return stepBuilderFactory.get("step1").<Utilisateur, MimeMessage>chunk(10).reader(readerResa())
+				.processor(processor()).writer(writer()).build();
+	}
+	// end::jobstep[]
 }

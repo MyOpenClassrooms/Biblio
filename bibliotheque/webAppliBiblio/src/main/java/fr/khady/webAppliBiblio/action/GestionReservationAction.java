@@ -102,6 +102,7 @@ public class GestionReservationAction extends ActionSupport implements SessionAw
 			this.addActionMessage("Reservation effectée avec succès");
 		}
 
+		listResa();
 		return vResult;
 
 	}

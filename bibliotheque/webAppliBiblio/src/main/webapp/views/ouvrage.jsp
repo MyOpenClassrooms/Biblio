@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="taglib.jsp"%>
 
 <body>
@@ -30,19 +31,19 @@
 						class="form-control" />
 					<s:textfield placeholder="Isbn" name="ouvrage.isbn"
 						class="form-control" />
-<%-- 					<s:select class="form-control" --%>
-<%-- 						list="#{'true':'Diponible', 'false':'Indisponible'}" --%>
-<%-- 						headerKey="-1" headerValue="Choisir la disponibilité" --%>
-<%-- 						name="ouvrage.disponibilite" value="null" /> --%>
-					<s:radio class="radio-inline" name="ouvrage.disponibilite" 
+					<%-- 					<s:select class="form-control" --%>
+					<%-- 						list="#{'true':'Diponible', 'false':'Indisponible'}" --%>
+					<%-- 						headerKey="-1" headerValue="Choisir la disponibilitÃ©" --%>
+					<%-- 						name="ouvrage.disponibilite" value="null" /> --%>
+					<s:radio class="radio-inline" name="ouvrage.disponibilite"
 						list="#{'true' : 'Diponible'}" />
-					<s:radio class="radio-inline" name="ouvrage.disponibilite" 
+					<s:radio class="radio-inline" name="ouvrage.disponibilite"
 						list="#{ 'false' : 'Indisponible'}" />
 					<s:submit value="Rechercher" cssClass="btn btn-primary" />
-					
+
 
 				</s:form>
-<%-- 				<s:submit value="Rafléchir" cssClass="btn btn-primary" /> --%>
+				<%-- 				<s:submit value="RaflÃ©chir" cssClass="btn btn-primary" /> --%>
 				<div class="tab-pane active" id="tab1" role="tabpanel">
 					<%-- 					<s:actionmessage /> --%>
 
@@ -62,18 +63,17 @@
 										<s:url namespace="/" action="detailsOuvrage" var="liendOu">
 											<s:param name="ouvrage.idOuvrage" value="idOuvrage" />
 										</s:url>
-										<s:a class="btn btn-primary" role="button" href="%{liendOu}">Voir détails</s:a>
+										<s:a class="btn btn-primary" role="button" href="%{liendOu}">Voir dÃ©tails</s:a>
 										<s:url namespace="/" action="reserver" var="lienResa">
 											<s:param name="ouvrage.idOuvrage" value="idOuvrage" />
 											<s:param name="utilisateur.idUser"
 												value="#session.utilisateur.idUser" />
 										</s:url>
+
 										<s:if test="%{disponibilite==false}">
 											<s:a class="btn btn-primary left" role="button"
-												href="%{lienResa}">Réserver</s:a>
+												href="%{lienResa}">RÃ©server</s:a>
 										</s:if>
-
-
 
 									</p>
 								</div>

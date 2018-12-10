@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import fr.khady.wsBiblioClient.BibliothequeException;
 import fr.khady.wsBiblioClient.Reservation;
 import fr.khady.wsBiblioClient.ReservationService;
 import fr.khady.wsBiblioClient.ReservationService_Service;
@@ -27,8 +28,14 @@ public class UtilisateurClient {
 //		}
 		List<Reservation> reservations = portResa.listerResevation();
 		for (Reservation reservation : reservations) {
-			
-			if(reservation.getOuvrage().isDisponibilite() == true && reservation.getPosition() == 1 && (reservation.getDateRetourPlusProche().toGregorianCalendar().getTime().compareTo(new Date()) < 0) ) {
+			if((reservation.getDateRetourPlusProche().toGregorianCalendar().getTime()).compareTo(new Date()) > 0 && reservation.getPosition() == 1 && reservation.getOuvrage().isDisponibilite() == true) {
+				try {
+					portResa.annulerResa(reservation.getUser(), reservation.getOuvrage());
+				} catch (BibliothequeException e) {
+					e.printStackTrace();
+				}
+				
+			}else if(reservation.getOuvrage().isDisponibilite() == true && reservation.getPosition() == 1 && (reservation.getDateRetourPlusProche().toGregorianCalendar().getTime().compareTo(new Date()) < 0) ) {
 				userEmails.add(reservation.getUser().getEmail());
 			}
 		}

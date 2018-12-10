@@ -1,4 +1,4 @@
-
+<%@ page contentType="text/html; charset=UTF-8"%>
 <nav class="navbar navbar-default ">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -18,21 +18,21 @@
 					<s:a href="%{lienOu}">Ouvrage</s:a></li>
 				<li class="dropdown">
 <!-- 				<a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a> -->
-				<a  role="button" " href="#">Réservation <span class="caret"></span></a>
+				<a  role="button" " href="#">RÃ©servation <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li class=""><s:url namespace="/" action="ouvrage" var="lienOu"></s:url>
-					<s:a href="%{lienOu}">Faire une réservation</s:a></li>
+					<s:a href="%{lienOu}">Faire une rÃ©servation</s:a></li>
 						<li class=""><s:url namespace="/" action="listerResa" var="lienListResa"></s:url>
-						<s:a href="%{lienListResa}">Liste réservations</s:a></li>
+						<s:a href="%{lienListResa}">Liste rÃ©servations</s:a></li>
 					</ul></li>
 					
 					
 <!-- 				<li class="dropdown"><a class="dropdown-toggle" -->
-<!-- 					data-toggle="dropdown" href="">Prêt <span class="caret"></span></a> -->
+<!-- 					data-toggle="dropdown" href="">PrÃªt <span class="caret"></span></a> -->
 <!-- 					<ul class="dropdown-menu"> -->
-<!-- 						<li class=""><a href="">Faire un prêt </a></li> -->
-<!-- 						<li class=""><a href="">Prolonger prêt</a></li> -->
-<!-- 						<li class=""><a href="">Mes prêts</a></li> -->
+<!-- 						<li class=""><a href="">Faire un prÃªt </a></li> -->
+<!-- 						<li class=""><a href="">Prolonger prÃªt</a></li> -->
+<!-- 						<li class=""><a href="">Mes prÃªts</a></li> -->
 <!-- 					</ul></li> -->
 					<li><s:url namespace="/" action="pret" var="lienPret"></s:url>
 					<s:a href="%{lienPret}">Pret </s:a></li>
@@ -47,7 +47,7 @@
 							<s:property value="#session.utilisateur.nom" />
 						<s:a href="%{lienlogout}">
 							<span class="glyphicon glyphicon-log-out"></span>
-						Déconnexion
+						DÃ©connexion
 				</s:a></li>
 				</ul>
 				

@@ -106,4 +106,23 @@ public class ReservationService {
 			throw new BibliothequeException("Aucune réservation trouvée pour l'utilisateur " + ouvrage, fault);
 	}
 	
+	@WebMethod
+	public Date dateRetourPrevu(@WebParam(name = "ouvrage") long idOuvrage) throws BibliothequeException {
+		BibliothequeFault fault = new BibliothequeFault();
+		Date dateRetourPrevue = dao.dateRetourPrevue(idOuvrage);
+		if (dateRetourPrevue != null) {
+			return dateRetourPrevue;
+		} else
+			throw new BibliothequeException("Aucune date trouvée", fault);
+	}
+	
+	@WebMethod
+	public Double verifDelai(@WebParam(name = "ouvrage") long idOuvrage, @WebParam(name = "user") long idUser) throws BibliothequeException {
+		BibliothequeFault fault = new BibliothequeFault();
+		Double diffDate = dao.verifDelai(idOuvrage, idUser);
+		if (diffDate != null) {
+			return diffDate;
+		} else
+			throw new BibliothequeException("Aucune date trouvée", fault);
+	}
 }

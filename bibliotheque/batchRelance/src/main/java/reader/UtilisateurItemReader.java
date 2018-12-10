@@ -29,5 +29,4 @@ public class UtilisateurItemReader implements ItemReader<String> {
 		} 
 		return  nextEmail;
 	}
-
 }
