@@ -25,9 +25,9 @@ public class ReservationService {
 
 	@WebMethod
 	public void creerReservation(@WebParam(name = "ouvrage") Ouvrage ouvrage,
-			@WebParam(name = "utilisateur") Utilisateur user) {
+			@WebParam(name = "utilisateur") Utilisateur user, @WebParam(name = "dateEnvoiEmail") Date dateEnvoiEmail) {
 
-		dao.creerReservation(ouvrage, user);
+		dao.creerReservation(ouvrage, user, dateEnvoiEmail);
 	}
 	
 	@WebMethod
@@ -123,6 +123,17 @@ public class ReservationService {
 		if (diffDate != null) {
 			return diffDate;
 		} else
-			throw new BibliothequeException("Aucune date trouvée", fault);
+			return null;
+	}
+	
+	@SuppressWarnings({ "null", "unused" })
+	@WebMethod
+	public int modifierResa(@WebParam(name = "datEnvoiEmail") Date dateEnvoiEmail, @WebParam(name = "idResa") long idResa) {
+	Integer update = dao.modifierResa(dateEnvoiEmail, idResa);
+		if (update != null) {
+			return update;
+		}else
+		return (Integer) null;
+
 	}
 }

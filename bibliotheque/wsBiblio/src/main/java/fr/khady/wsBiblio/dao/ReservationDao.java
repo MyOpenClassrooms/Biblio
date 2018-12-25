@@ -31,18 +31,19 @@ public class ReservationDao {
 			+ "WHERE ouvrage.id_ouvrage = exemplaire.id_ouvrage\r\n" + 
 			"AND pret.id_exemp = exemplaire.id_exemp " + 
 			"AND ouvrage.id_ouvrage = ?1 ";
-	private static final String JPQL_SELECT_VERIF_DELAI = "select extract(day from (date_rpp - now())) from reservation, utilisateur,ouvrage\r\n" + 
+	private static final String JPQL_SELECT_VERIF_DELAI = "select extract(day from (now() - date_envoi_email)) from reservation, utilisateur,ouvrage\r\n" + 
 			"where reservation.id_user=utilisateur.id_user\r\n" + 
 			"and reservation.id_ouvrage=ouvrage.id_ouvrage\r\n" + 
 			"and disponibilite = true\r\n" + 
 			"and reservation.id_ouvrage = ?1 and reservation.id_user = ?2";
+	private static final String JPQL_UPDATE = "UPDATE reservation SET date_envoi_email = ?1 WHERE id_resa = ?2";
 
 	private static final String PARAM_DATE_RESA = "dateReservation";
 	private static final String PARAM_UTILISATEUR = "iduser";
 	private static final String PARAM_OUVRAGE = "idOuvrage";
 
 	// permet de faire une réservation
-	public void creerReservation(Ouvrage ouvrage, Utilisateur user) throws DaoException {
+	public void creerReservation(Ouvrage ouvrage, Utilisateur user, Date dateEnvoiEmail) throws DaoException {
 		Reservation reservation = new Reservation();
 		int position;
 		Date dateRetourPlusProche;
@@ -62,6 +63,7 @@ public class ReservationDao {
 
 		reservation.setDateReservation(new Date());
 		reservation.setDateRetourPlusProche(dateRetourPlusProche);
+		reservation.setDateEnvoiEmail(dateEnvoiEmail);
 		if (listReservationParOuvrage.isEmpty()) {
 			position = 1;
 		} else {
@@ -206,4 +208,17 @@ public class ReservationDao {
 				throw new DaoException(e);
 			}
 	   }
+	   //maj la date envoi email
+		@SuppressWarnings({ "null", "unused" })
+		public int modifierResa(Date dateEnvoiEmail, long idResa) throws DaoException {
+			Query requete = entityManager.createNativeQuery(JPQL_UPDATE);
+			requete.setParameter(1, dateEnvoiEmail);
+			requete.setParameter(2, idResa);
+			Integer executeUp = requete.executeUpdate();
+			if (executeUp != null) {
+			return executeUp;
+			}else {
+				return (Integer) null;
+			}
+		}
 }

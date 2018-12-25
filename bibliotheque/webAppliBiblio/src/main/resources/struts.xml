@@ -166,5 +166,13 @@
 			method="listResa">
 			<result name="success">views/reservation.jsp</result>
 		</action>
+		
+		<action name="rappel"
+			class="fr.khady.webAppliBiblio.action.GestionUtilisateurAction"
+			method="rappel">
+			<result name="input">views/pret.jsp</result>
+			<result name="success">views/pret.jsp</result>
+		</action>
+		
 	</package>
 </struts>

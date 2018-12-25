@@ -38,11 +38,8 @@ public class UtilisateurService {
 	}
 
 	@WebMethod
-	public void modifierUtilisateur(@WebParam(name = "nom") String nom, @WebParam(name = "prénom") String prenom,
-			@WebParam(name = "adresse") String adress, @WebParam(name = "email") String email,
-			@WebParam(name = "login") String login, @WebParam(name = "motDePasse") String password,
-			@WebParam(name = "photo") String photo) {
-		dao.modifierUtilisateur(nom, prenom, adress, email, login, password, photo);
+	public void modifierUtilisateur(@WebParam(name = "user") Utilisateur user) {
+		dao.modifierUtilisateur(user);
 
 	}
 
@@ -72,6 +69,12 @@ public class UtilisateurService {
 	@WebMethod
 	public List<String> listerUtilisateurRelance() {
 			return  dao.listerUtilisateurRelance();
+		
+	}
+	
+	@WebMethod
+	public int updateRppel(@WebParam(name = "rappel")Boolean rappel, @WebParam(name = "user")long user) {
+		return dao.updateRappel(user, rappel);
 		
 	}
 }

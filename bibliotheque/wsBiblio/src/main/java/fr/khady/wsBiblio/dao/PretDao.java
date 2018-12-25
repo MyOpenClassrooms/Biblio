@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TemporalType;
@@ -24,9 +25,14 @@ public class PretDao {
 			+ "WHERE date_retour=?1";
 	private static final String JPQL_SELECT_PAR_UTILISATEUR = "SELECT p FROM Pret p WHERE p.user.idUser=:iduser";
 	private static final String JPQL_SELECT_PAR_UTILISATEUR_EXEMP = "SELECT p FROM Pret p WHERE p.user.idUser=:iduser AND p.exemplaire.idExemp = :idExemp";
+	private static final String JPQL_SELECT_VERIF_DELAI_FIVE_DAYS ="select extract(day from (now() - date_retour)) from pret, utilisateur,ouvrage,exemplaire\r\n" + 
+			"where pret.id_user=utilisateur.id_user and pret.id_exemp=exemplaire.id_exemp\r\n" + 
+			"and exemplaire.id_ouvrage=ouvrage.id_ouvrage and utilisateur.rappel = true\r\n" + 
+			"and pret.id_exemp = ?1 and pret.id_user = ?2 "; 
+	private static final String JPQL_SELECT_PAR_DATE_RETOUR = "SELECT p FROM Pret p WHERE p.dateRetourPrevu=:dateRetour";
+	
 	private static final String PARAM_ID_USER = "iduser";
 	private static final String PARAM_ID_EXEMP = "idExemp";
-	private static final String JPQL_SELECT_PAR_DATE_RETOUR = "SELECT p FROM Pret p WHERE p.dateRetourPrevu=:dateRetour";
 	private static final String PARAM_DATE_RETOUR = "dateRetour";
 	
 	public void creerPret(Date dateSortie, Date dateRetourPrevu, long idExemp, long idUser, Boolean rendu)
@@ -154,5 +160,18 @@ public class PretDao {
 		Pret pret = entityManager.find(Pret.class, idExemp);
 		return pret;
 	}
+	
+	// permet de vérifier si la date de reour est égal ou moins de 5jours
+	   public Double verifDelaiFiveDays(long idExemp,long idUser) {
+		   Query req = entityManager.createNativeQuery(JPQL_SELECT_VERIF_DELAI_FIVE_DAYS);
+		   req.setParameter(1, idExemp);
+		   req.setParameter(2, idUser); 
+		   try {
+			  return (Double) req.getSingleResult();
+		         
+			} catch (NoResultException  e) {
+				throw new DaoException(e);
+			}
+	   }
 
 }

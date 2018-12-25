@@ -34,6 +34,8 @@ public class Reservation implements Serializable{
 	private int position;
 	@Column(name = "date_rpp")
 	private Date dateRetourPlusProche;
+	@Column(name = "date_envoi_email")
+	private Date dateEnvoiEmail;
 	
 	public Reservation() {
 	}
@@ -93,6 +95,14 @@ public class Reservation implements Serializable{
 
 	public void setDateRetourPlusProche(Date dateRetourPlusProche) {
 		this.dateRetourPlusProche = dateRetourPlusProche;
+	}
+
+	public Date getDateEnvoiEmail() {
+		return dateEnvoiEmail;
+	}
+
+	public void setDateEnvoiEmail(Date dateEnvoiEmail) {
+		this.dateEnvoiEmail = dateEnvoiEmail;
 	}
 	
 	

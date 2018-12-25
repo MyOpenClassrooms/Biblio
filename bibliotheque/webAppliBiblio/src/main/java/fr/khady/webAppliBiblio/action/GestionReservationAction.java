@@ -97,7 +97,7 @@ public class GestionReservationAction extends ActionSupport implements SessionAw
 		} else if (!(prets.isEmpty()) && (exemp.getIdExemp() == (prets.get(0).getExemplaire().getIdExemp()))) {
 			addActionError("Impossible de faire une réservation, un pret en encours pour cet ouvrage");
 		} else {
-			reservationPort.creerReservation(ouvrage, utilisateur);
+			reservationPort.creerReservation(ouvrage, utilisateur, null);
 			vResult = ActionSupport.SUCCESS;
 			this.addActionMessage("Reservation effectée avec succès");
 		}

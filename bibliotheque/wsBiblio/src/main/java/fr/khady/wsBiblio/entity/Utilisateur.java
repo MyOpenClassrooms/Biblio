@@ -28,6 +28,7 @@ public class Utilisateur implements Serializable {
 	private String login;
 	private String password;
 	private String photo;
+	private Boolean rappel;
 //	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST) 
 //	private List<Reservation> reservations; 
 
@@ -113,6 +114,16 @@ public class Utilisateur implements Serializable {
 	public String toString() {
 		return String.format("Utilisateur[id=%d, nom='%s', prenom='%s']", idUser, nom, prenom);
 	}
+
+	public Boolean getRappel() {
+		return rappel;
+	}
+
+	public void setRappel(Boolean rappel) {
+		this.rappel = rappel;
+	}
+	
+	
 //
 //	public List<Reservation> getReservations() {
 //		return reservations;

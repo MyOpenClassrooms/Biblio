@@ -10,6 +10,9 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.jasypt.util.password.StrongPasswordEncryptor;
 
 import fr.khady.wsBiblioClient.BibliothequeException;
+import fr.khady.wsBiblioClient.Pret;
+import fr.khady.wsBiblioClient.PretService;
+import fr.khady.wsBiblioClient.PretService_Service;
 import fr.khady.wsBiblioClient.Utilisateur;
 import fr.khady.wsBiblioClient.UtilisateurService;
 import fr.khady.wsBiblioClient.UtilisateurService_Service;
@@ -20,9 +23,13 @@ public class GestionUtilisateurAction extends ActionSupport implements SessionAw
 
 	public Utilisateur utilisateur = new Utilisateur();
 	public List<Utilisateur> utilisateurs;
+	public List<Pret> prets;
 	UtilisateurService_Service service = new UtilisateurService_Service();
 	UtilisateurService utilisateurPort = service.getUtilisateurServicePort();
+	PretService_Service serviceP = new PretService_Service();
+	PretService pretPort = serviceP.getPretServicePort();
 
+	private Boolean checkbox;
 //	StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
 
 	 private Map<String, Object> session;
@@ -92,4 +99,29 @@ public class GestionUtilisateurAction extends ActionSupport implements SessionAw
 
 	    return ActionSupport.SUCCESS;
 	}
+	public String rappel() {
+	
+		checkbox = utilisateur.isRappel();
+		utilisateur = (Utilisateur) this.session.get("utilisateur");
+		int result = utilisateurPort.updateRppel(checkbox, utilisateur.getIdUser());
+		if (result == 1) {
+			this.addActionMessage("Envoi de mail de rappel activé");
+		}
+		
+		try {
+			prets = pretPort.trouverPretParUtilisateur(utilisateur.getIdUser());
+		} catch (BibliothequeException e) {
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+
+	public Boolean getCheckbox() {
+		return checkbox;
+	}
+
+	public void setCheckbox(Boolean checkbox) {
+		this.checkbox = checkbox;
+	}
+	
 }

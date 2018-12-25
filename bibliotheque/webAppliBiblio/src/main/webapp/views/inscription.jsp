@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="taglib.jsp"%>
 <body>
 
@@ -14,8 +15,8 @@
 			 <s:actionmessage/>
 				<s:form action="ajouterUtilisateur" method="post" theme="bootstrap" cssClass="form-horizontal">
 					<s:textfield label="Nom" name="utilisateur.nom" requiredLabel="true" placeholder="Entrez votre nom" />
-					<s:textfield label="Prénom" requiredLabel="true" name="utilisateur.prenom"
-						placeholder="Entrez votre prénom" />
+					<s:textfield label="PrÃ©nom" requiredLabel="true" name="utilisateur.prenom"
+						placeholder="Entrez votre prÃ©nom" />
 					<s:textfield label="Adresse" name="utilisateur.adress"
 						placeholder="Entrez votre adresse" />
 					<s:textfield label="Email" requiredLabel="true"  name="utilisateur.email"
