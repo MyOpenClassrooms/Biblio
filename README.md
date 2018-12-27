@@ -13,6 +13,10 @@ Cette application a pour objectif le suivi et la gestion des prêts des ouvrages
 
 * voir le détail des ouvrages,
 
+* réserver des ouvrages,
+
+* voir la liste de ses réservations en cours,
+
 _Technologies utilisées :_
 -----
 
