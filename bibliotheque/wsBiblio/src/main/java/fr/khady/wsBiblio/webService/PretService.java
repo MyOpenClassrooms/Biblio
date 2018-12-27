@@ -1,6 +1,7 @@
 package fr.khady.wsBiblio.webService;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -129,9 +130,9 @@ public class PretService {
 	}
 	
 	@WebMethod
-	public Double verifDelaiFiveDays(@WebParam(name = "exemplaire") long idExemp, @WebParam(name = "user") long idUser) throws BibliothequeException {
+	public List verifDelaiFiveDays( @WebParam(name = "user") long idUser) throws BibliothequeException {
 		BibliothequeFault fault = new BibliothequeFault();
-		Double diffDate = dao.verifDelaiFiveDays(idExemp, idUser);
+		List diffDate = dao.verifDelaiFiveDays(idUser);
 		if (diffDate != null) {
 			return diffDate;
 		} else

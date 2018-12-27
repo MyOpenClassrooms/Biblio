@@ -1,5 +1,6 @@
 package fr.khady.wsBiblio.dao;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class PretDao {
 	private static final String JPQL_SELECT_VERIF_DELAI_FIVE_DAYS ="select extract(day from (now() - date_retour)) from pret, utilisateur,ouvrage,exemplaire\r\n" + 
 			"where pret.id_user=utilisateur.id_user and pret.id_exemp=exemplaire.id_exemp\r\n" + 
 			"and exemplaire.id_ouvrage=ouvrage.id_ouvrage and utilisateur.rappel = true\r\n" + 
-			"and pret.id_exemp = ?1 and pret.id_user = ?2 "; 
+			"and pret.id_user = ?1 "; 
 	private static final String JPQL_SELECT_PAR_DATE_RETOUR = "SELECT p FROM Pret p WHERE p.dateRetourPrevu=:dateRetour";
 	
 	private static final String PARAM_ID_USER = "iduser";
@@ -162,12 +163,12 @@ public class PretDao {
 	}
 	
 	// permet de vérifier si la date de reour est égal ou moins de 5jours
-	   public Double verifDelaiFiveDays(long idExemp,long idUser) {
+	   public List verifDelaiFiveDays(long idUser) {
 		   Query req = entityManager.createNativeQuery(JPQL_SELECT_VERIF_DELAI_FIVE_DAYS);
-		   req.setParameter(1, idExemp);
-		   req.setParameter(2, idUser); 
+		   req.setParameter(1, idUser); 
+		   List result = req.getResultList();
 		   try {
-			  return (Double) req.getSingleResult();
+			  return result;
 		         
 			} catch (NoResultException  e) {
 				throw new DaoException(e);

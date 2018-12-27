@@ -90,7 +90,7 @@ public class GestionReservationAction extends ActionSupport implements SessionAw
 //				
 //			}
 		if (!(reservations.size() < (2 * exemp.getNbrExemplaire()))) {
-			addActionError("Impossible de faire une réservation, merci de réessayer plutart! resa max");
+			addActionError("Impossible de faire une réservation, merci de réessayer plutart!,le nombre maximum de réservation est atteint");
 
 		} else if (reservationsUserOuvrage.size() == 1) {
 			addActionError("Impossible de faire une réservation, une résa en encours por cet ouvrage");
@@ -139,7 +139,7 @@ public class GestionReservationAction extends ActionSupport implements SessionAw
 		if (executeUpdate != 0) {
 			this.addActionMessage("Reservation annulée");
 		}
-		reservations = reservationPort.listerResevation();
+		listResa();
 		return SUCCESS;
 	}
 

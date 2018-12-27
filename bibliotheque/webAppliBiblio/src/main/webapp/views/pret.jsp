@@ -23,10 +23,10 @@
 				</s:if>
 				<s:form action="rappel" method="post" theme="simple"
 					cssClass="well form-inline" style="width:350px">
-					<%-- 				<s:checkbox name="checkMe" value="#session.utilisateur.rappel" label="Mail de rappel 5 jours avant la fin du prêt" /> --%>
+					<%-- 				<s:checkbox name="checkMe"  label="Mail de rappel 5 jours avant la fin du prêt" /> --%>
 					<p>Mail de rappel 5 jours avant la fin du prêt</p>
-					<s:radio cssClass="radio-inline" name="utilisateur.rappel" list="#{'true' : 'Oui'}" />
-					<s:radio cssClass="radio-inline" name="utilisateur.rappel"
+					<s:radio cssClass="radio-inline" name="utilisateur.rappel" value="#session.utilisateur.rappel" list="#{'true' : 'Oui'}" />
+					<s:radio cssClass="radio-inline" name="utilisateur.rappel" value="#session.utilisateur.rappel"
 						list="#{ 'false' : 'Non'}" />
 
 					<s:submit cssClass="btn btn-primary" value="Valider" />

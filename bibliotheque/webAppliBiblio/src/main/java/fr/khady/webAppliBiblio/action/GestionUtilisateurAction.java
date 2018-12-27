@@ -104,8 +104,10 @@ public class GestionUtilisateurAction extends ActionSupport implements SessionAw
 		checkbox = utilisateur.isRappel();
 		utilisateur = (Utilisateur) this.session.get("utilisateur");
 		int result = utilisateurPort.updateRppel(checkbox, utilisateur.getIdUser());
-		if (result == 1) {
+		if (result == 1 && checkbox == true) {
 			this.addActionMessage("Envoi de mail de rappel activé");
+		}else if(result == 1 && checkbox == false){
+			this.addActionMessage("Envoi de mail de rappel déactivé");
 		}
 		
 		try {

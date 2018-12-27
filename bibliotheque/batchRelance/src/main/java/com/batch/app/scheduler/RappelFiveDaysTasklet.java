@@ -53,20 +53,24 @@ public class RappelFiveDaysTasklet implements Tasklet {
 		ExemplaireService portExemp = serviceExemp.getExemplaireServicePort();
 
 		prets = portPret.listerPret();
-		Double diffDate = null;
+		List<Object> diffDate = null;
 		Utilisateur nextEmail = new Utilisateur();
 		if (!(prets.isEmpty())) {
 			for (Pret pret : prets) {
 
 				// renvoie la différence entre la date courante et la date retour pret
-				diffDate = portPret.verifDelaiFiveDays(pret.getExemplaire().getIdExemp(), pret.getUser().getIdUser());
-				if (diffDate != null) {
+				diffDate = portPret.verifDelaiFiveDays(pret.getUser().getIdUser());
+				for (Object double1 : diffDate) {
+				
+				if (double1 != null) {
 				// vérifie si l'option rappel est à true pour l'utilisateur et et que la diff
 				// est inf ou égal a 5jours
-				if (pret.getUser().isRappel() == true  && diffDate >= -5.0 && diffDate <= 0.0) {
+				if (pret.getUser().isRappel() == true  && new Double(double1.toString()) >= -5.0 && new Double(double1.toString()) <= 0.0) {
 					// dans ce cas on ajoute l'utilisateur à la liste
 					emailList.add(pret.getUser());
 				}
+				}
+				
 				}
 			}
 

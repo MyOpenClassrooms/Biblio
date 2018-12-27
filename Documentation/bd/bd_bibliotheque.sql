@@ -66,6 +66,7 @@ CREATE TABLE utilisateur (
                 login VARCHAR NULL,
                 password VARCHAR NOT NULL,
                 photo VARCHAR NULL,
+			    rappel boolean NOT NULL,
                 CONSTRAINT utilisateur_pk PRIMARY KEY (id_user)
 );
 
@@ -83,6 +84,50 @@ CREATE TABLE pret (
 				rendu BOOLEAN NOT NULL,
                 CONSTRAINT pret_pk PRIMARY KEY (id_pret)
 );
+-- Table: reservation
+
+-- DROP TABLE reservation;
+
+CREATE TABLE reservation
+(
+  id_resa serial NOT NULL,
+  id_ouvrage integer,
+  id_user integer,
+  date_resa date,
+  "position" integer NOT NULL DEFAULT 1,
+  date_rpp date,
+  date_envoi_email date,
+  CONSTRAINT resa_pk PRIMARY KEY (id_resa),
+  CONSTRAINT ouvrage_resa_fk FOREIGN KEY (id_ouvrage)
+      REFERENCES ouvrage (id_ouvrage) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT utilisateur_resa_fk FOREIGN KEY (id_user)
+      REFERENCES utilisateur (id_user) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE reservation
+  OWNER TO postgres;
+
+-- Index: fki_ouvrage_resa_fk
+
+-- DROP INDEX fki_ouvrage_resa_fk;
+
+CREATE INDEX fki_ouvrage_resa_fk
+  ON reservation
+  USING btree
+  (id_ouvrage);
+
+-- Index: fki_utilisateur_resa_fk
+
+-- DROP INDEX fki_utilisateur_resa_fk;
+
+CREATE INDEX fki_utilisateur_resa_fk
+  ON reservation
+  USING btree
+  (id_user);
 
 ALTER SEQUENCE pret_id_pret_seq OWNED BY pret.id_pret;
 
